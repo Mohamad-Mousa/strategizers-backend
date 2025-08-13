@@ -2,6 +2,7 @@ let express = require("express");
 const AdminRouters = require("./admin");
 const ResponseService = require("../services/core/response.service");
 const config = require("../config");
+const PublicRouters = require("./public");
 
 class ApiRouter {
   constructor() {}
@@ -34,7 +35,7 @@ class ApiRouter {
     });
 
     new AdminRouters().configureRoutes(router);
-
+    new PublicRouters().configureRoutes(router);
     app.use("/api/v1", router);
   }
 }

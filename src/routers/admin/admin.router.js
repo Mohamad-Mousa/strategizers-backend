@@ -11,7 +11,7 @@ class AdminRouter {
   configureRoutes(app) {
     let router = express.Router();
 
-    app.use(PrivilegesMiddleware.isAllowed(function_Keys.admins));
+    router.use(PrivilegesMiddleware.isAllowed(function_Keys.admins));
 
     router.get("", this.adminController.findMany);
     router.post("", this.adminController.create);

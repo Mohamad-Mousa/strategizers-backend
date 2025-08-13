@@ -31,6 +31,8 @@ class MongooseLoader {
     this.models.Privilege = require("../models/privilege.model");
     this.models.Function = require("../models/function.model");
     this.models.RefreshToken = require("../models/refresh_token.model");
+    this.models.Website = require("../models/website.model");
+    this.models.Service = require("../models/service.model");
   }
 
   static connect() {
