@@ -2,6 +2,12 @@ let express = require("express");
 
 const ServiceRouter = require("./service.router");
 const WebsiteRouter = require("./website.router");
+const SettingRouter = require("./setting.router");
+const TestimonialRouter = require("./testimonial.router");
+const FAQRouter = require("./faq.router");
+const PartnerRouter = require("./partner.router");
+const BlogRouter = require("./blog.router");
+const ContactRouter = require("./contact.router");
 
 class PublicRouters {
   constructor() {}
@@ -11,6 +17,12 @@ class PublicRouters {
 
     new ServiceRouter().configureRoutes(router);
     new WebsiteRouter().configureRoutes(router);
+    new SettingRouter().configureRoutes(router);
+    new TestimonialRouter().configureRoutes(router);
+    new FAQRouter().configureRoutes(router);
+    new PartnerRouter().configureRoutes(router);
+    new BlogRouter().configureRoutes(router);
+    new ContactRouter().configureRoutes(router);
 
     app.use("/public", router);
   }

@@ -33,6 +33,12 @@ class MongooseLoader {
     this.models.RefreshToken = require("../models/refresh_token.model");
     this.models.Website = require("../models/website.model");
     this.models.Service = require("../models/service.model");
+    this.models.Setting = require("../models/setting.model");
+    this.models.Testimonial = require("../models/testimonial.model");
+    this.models.FAQ = require("../models/faq.model");
+    this.models.Partner = require("../models/partner.model");
+    this.models.Blog = require("../models/blog.model");
+    this.models.Contact = require("../models/contact.model");
   }
 
   static connect() {

@@ -5,4 +5,9 @@ module.exports = {
   settings: "settings",
   website: "website",
   services: "services",
+  testimonials: "testimonials",
+  faqs: "faqs",
+  partners: "partners",
+  blogs: "blogs",
+  contacts: "contacts",
 };
