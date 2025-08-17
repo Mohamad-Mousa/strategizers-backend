@@ -10,4 +10,6 @@ module.exports = {
   partners: "partners",
   blogs: "blogs",
   contacts: "contacts",
+  projects: "projects",
+  teams: "teams",
 };

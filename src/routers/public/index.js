@@ -8,6 +8,8 @@ const FAQRouter = require("./faq.router");
 const PartnerRouter = require("./partner.router");
 const BlogRouter = require("./blog.router");
 const ContactRouter = require("./contact.router");
+const ProjectRouter = require("./project.router");
+const TeamRouter = require("./team.router");
 
 class PublicRouters {
   constructor() {}
@@ -23,6 +25,8 @@ class PublicRouters {
     new PartnerRouter().configureRoutes(router);
     new BlogRouter().configureRoutes(router);
     new ContactRouter().configureRoutes(router);
+    new ProjectRouter().configureRoutes(router);
+    new TeamRouter().configureRoutes(router);
 
     app.use("/public", router);
   }

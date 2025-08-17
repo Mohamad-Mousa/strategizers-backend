@@ -19,7 +19,7 @@ class SettingController {
 
   update = asyncHandler(async (req, res) => {
     try {
-      const settings = await this.settingService.update(req.body);
+      const settings = await this.settingService.update(req.body, req.files);
       ResponseService.success(res, "Success!", settings, 200);
     } catch (error) {
       ResponseService.error(res, error.message, 400);

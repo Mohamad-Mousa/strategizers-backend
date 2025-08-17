@@ -1,4 +1,4 @@
-const { mongoose, Phone } = require("./model-template");
+const { mongoose, Phone, Content } = require("./model-template");
 
 const Setting = mongoose.model(
   "Setting",
@@ -38,6 +38,22 @@ const Setting = mongoose.model(
           type: String,
         },
       },
+      contactTeam: [
+        {
+          name: Content,
+          position: Content,
+          image: {
+            type: String,
+          },
+          phone: {
+            code: Number,
+            number: Number,
+          },
+          email: {
+            type: String,
+          },
+        },
+      ],
     },
     { timestamps: true }
   )
