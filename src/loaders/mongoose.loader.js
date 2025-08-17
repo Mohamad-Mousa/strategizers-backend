@@ -40,6 +40,7 @@ class MongooseLoader {
     this.models.Blog = require("../models/blog.model");
     this.models.Contact = require("../models/contact.model");
     this.models.Project = require("../models/project.model");
+    this.models.Newsletter = require("../models/newsletter.model");
   }
 
   static connect() {

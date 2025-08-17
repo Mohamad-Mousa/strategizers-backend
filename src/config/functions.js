@@ -12,4 +12,5 @@ module.exports = {
   contacts: "contacts",
   projects: "projects",
   teams: "teams",
+  newsletters: "newsletters",
 };

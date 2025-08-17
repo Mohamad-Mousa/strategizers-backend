@@ -10,6 +10,7 @@ const BlogRouter = require("./blog.router");
 const ContactRouter = require("./contact.router");
 const ProjectRouter = require("./project.router");
 const TeamRouter = require("./team.router");
+const NewsletterRouter = require("./newsletter.router");
 
 class PublicRouters {
   constructor() {}
@@ -27,7 +28,7 @@ class PublicRouters {
     new ContactRouter().configureRoutes(router);
     new ProjectRouter().configureRoutes(router);
     new TeamRouter().configureRoutes(router);
-
+    new NewsletterRouter().configureRoutes(router);
     app.use("/public", router);
   }
 }

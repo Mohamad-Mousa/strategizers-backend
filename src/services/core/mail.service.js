@@ -32,27 +32,64 @@ class MailService {
   static async sendVerificationCodeEmail(to, code) {
     const subject = "Confirm your email";
     const template = MailTemplateService.verificationCodeTemplate(code);
-    return await MailService.send({to, subject, template});
+    return await MailService.send({ to, subject, template });
   }
 
-  static async sendChangePasswordEmail(to, token,isBusiness) {
+  static async sendChangePasswordEmail(to, token, isBusiness) {
     const subject = "Change your password";
-    const template = MailTemplateService.changePasswordTemplate(token,isBusiness);
-    return await MailService.send({to, subject, template});
+    const template = MailTemplateService.changePasswordTemplate(
+      token,
+      isBusiness
+    );
+    return await MailService.send({ to, subject, template });
   }
 
-  static async sendChargeEmail(to,date,fromtime,totime,amount,currency,link) {
+  static async sendChargeEmail(
+    to,
+    date,
+    fromtime,
+    totime,
+    amount,
+    currency,
+    link
+  ) {
     const subject = "Down Payment";
-    const template = MailTemplateService.chargePaymentTemplate(date,fromtime,totime,amount,currency,link);
-    return await MailService.send({to, subject, template});
+    const template = MailTemplateService.chargePaymentTemplate(
+      date,
+      fromtime,
+      totime,
+      amount,
+      currency,
+      link
+    );
+    return await MailService.send({ to, subject, template });
   }
 
-  static async sendBankInfoEmail(to,date,fromtime,totime,amount,currency,link) {
+  static async sendBankInfoEmail(
+    to,
+    date,
+    fromtime,
+    totime,
+    amount,
+    currency,
+    link
+  ) {
     const subject = "Bank Footprint";
-    const template = MailTemplateService.bankInfoTemplate(date,fromtime,totime,amount,currency,link);
-    return await MailService.send({to, subject, template});
+    const template = MailTemplateService.bankInfoTemplate(
+      date,
+      fromtime,
+      totime,
+      amount,
+      currency,
+      link
+    );
+    return await MailService.send({ to, subject, template });
   }
 
+  static async sendNewsletterEmail(to, subject, content) {
+    const template = MailTemplateService.newsletterTemplate(subject, content);
+    return await MailService.send({ to, subject, template });
+  }
 }
 
 module.exports = MailService;

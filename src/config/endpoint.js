@@ -889,6 +889,16 @@ module.exports = {
                   type: "text",
                 },
                 { key: "contactTeam[0][email]", value: "email", type: "text" },
+                {
+                  key: "legal[privacyPolicy]",
+                  value: "privacyPolicy",
+                  type: "text",
+                },
+                {
+                  key: "legal[termsAndConditions]",
+                  value: "termsAndConditions",
+                  type: "text",
+                },
               ],
               params: [],
             },
@@ -1479,6 +1489,48 @@ module.exports = {
             },
           ],
         },
+        {
+          folder: "Newsletter",
+          auth: null,
+          items: [
+            {
+              name: "find Many",
+              method: "GET",
+              url: "{{local}}/admin/newsletter",
+              params: [
+                { key: "page", value: "1", type: "query" },
+                { key: "limit", value: "10", type: "query" },
+                { key: "sortBy", value: "createdAt", type: "query" },
+                { key: "sortDirection", value: "desc", type: "query" },
+                { key: "term", value: "", type: "query" },
+              ],
+            },
+            {
+              name: "Find One",
+              method: "GET",
+              url: "{{local}}/admin/newsletter/:id",
+              params: [],
+            },
+            {
+              name: "Broadcast",
+              method: "POST",
+              url: "{{local}}/admin/newsletter",
+              bodyType: "raw",
+              body: {
+                emails: ["<email1>", "<email2>", "<email3>"],
+                subject: "<string>",
+                content: "<string>",
+              },
+              params: [],
+            },
+            {
+              name: "Delete",
+              method: "DELETE",
+              url: "{{local}}/admin/newsletter/delete/:ids",
+              params: [],
+            },
+          ],
+        },
       ],
     },
     {
@@ -1682,6 +1734,28 @@ module.exports = {
               name: "Find One",
               method: "GET",
               url: "{{local}}/public/team/:id",
+              params: [],
+            },
+          ],
+        },
+        {
+          folder: "Newsletter",
+          auth: null,
+          items: [
+            {
+              name: "Subscribe",
+              method: "POST",
+              url: "{{local}}/public/newsletter/subscribe",
+              bodyType: "raw",
+              body: {
+                email: "<string>",
+              },
+              params: [],
+            },
+            {
+              name: "Unsubscribe",
+              method: "DELETE",
+              url: "{{local}}/public/newsletter/unsubscribe/:email",
               params: [],
             },
           ],
