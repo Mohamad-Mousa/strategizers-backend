@@ -1,4 +1,4 @@
-require('dotenv').config();
+require("dotenv").config();
 
 let config = {
   dbUrl: process.env.DBURL,
@@ -7,7 +7,7 @@ let config = {
   env: process.env.NODE_ENV,
   domain: process.env.DOMAIN,
   origin: process.env.ORIGIN,
-  allowedOrigins: [],
+  allowedOrigins: ["http://localhost:3000"],
 };
 
 module.exports = config;
