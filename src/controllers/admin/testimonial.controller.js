@@ -31,7 +31,10 @@ class TestimonialController {
 
   create = asyncHandler(async (req, res) => {
     try {
-      const testimonial = await this.testimonialService.create(req.body);
+      const testimonial = await this.testimonialService.create(
+        req.body,
+        req.file
+      );
       this.UserLogService.create(
         req.decoded._id,
         req.method,
@@ -46,7 +49,7 @@ class TestimonialController {
 
   update = asyncHandler(async (req, res) => {
     try {
-      await this.testimonialService.update(req.body);
+      await this.testimonialService.update(req.body, req.file);
       this.UserLogService.create(
         req.decoded._id,
         req.method,

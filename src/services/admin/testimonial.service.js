@@ -65,7 +65,10 @@ class TestimonialService extends BaseService {
     return { testimonial };
   }
 
-  async create(body) {
+  async create(body, file) {
+    if (file) {
+      body.image = file.filename;
+    }
     this.bodyValidationService.validateRequiredFields(body, [
       "name.en",
       "name.ar",
@@ -79,7 +82,10 @@ class TestimonialService extends BaseService {
     return { testimonial };
   }
 
-  async update(body) {
+  async update(body, file) {
+    if (file) {
+      body.image = file.filename;
+    }
     const testimonial = await this.Testimonial.findByIdAndUpdate(body._id, {
       ...body,
     });

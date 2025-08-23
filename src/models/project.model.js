@@ -27,9 +27,18 @@ const Project = mongoose.model(
       link: {
         type: String,
       },
-      projectAnalysis: Content,
-      projectSolutions: Content,
-      projectResults: Content,
+      projectAnalysis: {
+        description: Content,
+        image: String,
+      },
+      projectSolutions: {
+        description: Content,
+        image: String,
+      },
+      projectResults: {
+        description: Content,
+        image: String,
+      },
       date: {
         type: Date,
         required: true,

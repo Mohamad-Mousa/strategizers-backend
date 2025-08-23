@@ -7,9 +7,14 @@ const Testimonial = mongoose.model(
       name: Content,
       position: Content,
       description: Content,
+      image: String,
       isActive: {
         type: Boolean,
         default: true,
+      },
+      isFeatured: {
+        type: Boolean,
+        default: false,
       },
     },
     { timestamps: true }
