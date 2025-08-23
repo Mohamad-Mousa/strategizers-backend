@@ -31,7 +31,7 @@ class ProjectController {
 
   create = asyncHandler(async (req, res) => {
     try {
-      const project = await this.projectService.create(req.body, req.file);
+      const project = await this.projectService.create(req.body, req.files);
       this.UserLogService.create(
         req.decoded._id,
         req.method,
@@ -46,7 +46,7 @@ class ProjectController {
 
   update = asyncHandler(async (req, res) => {
     try {
-      await this.projectService.update(req.body, req.file);
+      await this.projectService.update(req.body, req.files);
       this.UserLogService.create(
         req.decoded._id,
         req.method,

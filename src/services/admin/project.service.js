@@ -2,6 +2,7 @@ const BaseService = require("../core/base.service");
 const StringFormatter = require("../core/string_formatter");
 const CustomError = require("../core/custom_error.service");
 const BodyValidationService = require("../core/body_validation.service");
+const HandleUploadService = require("../core/handle_uploads.service");
 
 class ProjectService extends BaseService {
   constructor() {
@@ -9,6 +10,7 @@ class ProjectService extends BaseService {
     this.Project = this.models.Project;
     this.Service = this.models.Service;
     this.bodyValidationService = BodyValidationService;
+    this.HandleUploadService = HandleUploadService;
   }
 
   async findMany(req_query, limit = 10) {
@@ -86,7 +88,7 @@ class ProjectService extends BaseService {
     return { project };
   }
 
-  async create(body, file) {
+  async create(body, files) {
     this.bodyValidationService.validateRequiredFields(body, [
       "title.en",
       "title.ar",
@@ -98,9 +100,7 @@ class ProjectService extends BaseService {
       "date",
     ]);
 
-    if (file) {
-      body.image = file.filename;
-    }
+    body = this.HandleUploadService.handleFileUploads(body, files);
 
     if (!body.image) {
       throw new CustomError("Image is required", 400);
@@ -125,12 +125,10 @@ class ProjectService extends BaseService {
     return { project };
   }
 
-  async update(body, file) {
+  async update(body, files) {
     this.bodyValidationService.validateRequiredFields(body, ["_id"]);
 
-    if (file) {
-      body.image = file.filename;
-    }
+    body = this.HandleUploadService.handleFileUploads(body, files);
 
     const existingProject = await this.Project.findOne({
       slug: body.slug,

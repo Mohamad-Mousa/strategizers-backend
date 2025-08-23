@@ -7,7 +7,7 @@ const UploadMiddleware = require("../../middlewares/upload.middleware");
 class ProjectRouter {
   constructor() {
     this.projectController = new ProjectController();
-    this.UploadMiddleware = UploadMiddleware.uploadSingle("image", "projects/");
+    this.UploadMiddleware = UploadMiddleware.uploadAny("projects/");
   }
 
   configureRoutes(app) {
