@@ -94,7 +94,6 @@ class ProjectService extends BaseService {
       "title.ar",
       "shortDescription.en",
       "shortDescription.ar",
-      "slug",
       "service",
       "customer",
       "date",
@@ -121,6 +120,10 @@ class ProjectService extends BaseService {
       }
     }
 
+    body.slug = StringFormatter.slugify(body.title.en);
+
+    console.log(body);
+
     const project = await this.Project.create(body);
     return { project };
   }
@@ -146,6 +149,10 @@ class ProjectService extends BaseService {
       if (!service) {
         throw new CustomError("Service not found or not active", 404);
       }
+    }
+
+    if (body.title && body.title.en) {
+      body.slug = StringFormatter.slugify(body.title.en);
     }
 
     const project = await this.Project.findByIdAndUpdate(body._id, body, {
