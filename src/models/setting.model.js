@@ -55,12 +55,8 @@ const Setting = mongoose.model(
         },
       ],
       legal: {
-        privacyPolicy: {
-          type: String,
-        },
-        termsAndConditions: {
-          type: String,
-        },
+        privacyPolicy: Content,
+        termsAndConditions: Content,
       },
     },
     { timestamps: true }

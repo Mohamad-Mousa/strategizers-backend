@@ -890,12 +890,22 @@ module.exports = {
                 },
                 { key: "contactTeam[0][email]", value: "email", type: "text" },
                 {
-                  key: "legal[privacyPolicy]",
+                  key: "legal[privacyPolicy][en]",
                   value: "privacyPolicy",
                   type: "text",
                 },
                 {
-                  key: "legal[termsAndConditions]",
+                  key: "legal[privacyPolicy][ar]",
+                  value: "privacyPolicy",
+                  type: "text",
+                },
+                {
+                  key: "legal[termsAndConditions][en]",
+                  value: "termsAndConditions",
+                  type: "text",
+                },
+                {
+                  key: "legal[termsAndConditions][ar]",
                   value: "termsAndConditions",
                   type: "text",
                 },
