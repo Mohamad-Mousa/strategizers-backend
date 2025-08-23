@@ -82,7 +82,10 @@ class AdminService extends BaseService {
       body.image = file.filename;
     }
 
+    console.log(body);
+
     const password = bcrypt.hashSync(body.password, 8);
+
     let admin = await this.Admin({
       ...body,
       password,
