@@ -7,7 +7,7 @@ let config = {
   env: process.env.NODE_ENV,
   domain: process.env.DOMAIN,
   origin: process.env.ORIGIN,
-  allowedOrigins: ["http://localhost:3000"],
+  allowedOrigins: ["http://localhost:3000", "http://localhost:5173"],
 };
 
 module.exports = config;
