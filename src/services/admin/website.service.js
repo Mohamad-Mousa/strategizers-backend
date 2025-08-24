@@ -18,8 +18,6 @@ class WebsiteService extends BaseService {
   async update(body, files) {
     body = this.handleUploadService.handleFileUploads(body, files);
 
-    console.log(body);
-
     const website = await this.Website.findOneAndUpdate({}, body, {
       new: true,
       upsert: true,
