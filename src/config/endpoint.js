@@ -682,12 +682,22 @@ module.exports = {
                   type: "text",
                 },
                 {
-                  key: "benefits[features][0]",
+                  key: "benefits[features][0][en]",
                   value: "feature",
                   type: "text",
                 },
                 {
-                  key: "benefits[features][1]",
+                  key: "benefits[features][0][ar]",
+                  value: "feature",
+                  type: "text",
+                },
+                {
+                  key: "benefits[features][1][en]",
+                  value: "feature",
+                  type: "text",
+                },
+                {
+                  key: "benefits[features][1][ar]",
                   value: "feature",
                   type: "text",
                 },
