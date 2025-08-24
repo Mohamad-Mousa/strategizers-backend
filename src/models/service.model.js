@@ -38,8 +38,7 @@ const Service = mongoose.model(
         description: Content,
         features: [
           {
-            type: String,
-            required: true,
+            type: Content,
           },
         ],
         video: {
