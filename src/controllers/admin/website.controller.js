@@ -22,8 +22,6 @@ class WebsiteController {
 
   update = asyncHandler(async (req, res) => {
     try {
-      console.log(req.body);
-
       await this.websiteService.update(req.body, req.files);
       this.UserLogService.create(
         req.decoded._id,
