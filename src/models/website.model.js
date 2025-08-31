@@ -115,6 +115,24 @@ const Website = mongoose.model(
           required: true,
         },
       },
+      teamPage: {
+        banner: {
+          type: String,
+          required: true,
+        },
+      },
+      faqPage: {
+        banner: {
+          type: String,
+          required: true,
+        },
+      },
+      testimonialPage: {
+        banner: {
+          type: String,
+          required: true,
+        },
+      },
     },
     { timestamps: true }
   )

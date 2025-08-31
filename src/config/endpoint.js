@@ -592,6 +592,24 @@ module.exports = {
                   value: "image.png",
                   type: "file",
                 },
+                // team page
+                {
+                  key: "teamPage[banner]",
+                  value: "image.png",
+                  type: "file",
+                },
+                // faq page
+                {
+                  key: "faqPage[banner]",
+                  value: "image.png",
+                  type: "file",
+                },
+                // testimonial page
+                {
+                  key: "testimonialPage[banner]",
+                  value: "image.png",
+                  type: "file",
+                },
               ],
               params: [],
             },
