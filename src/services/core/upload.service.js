@@ -29,6 +29,9 @@ class UploadService {
     "m4a",
     "wma",
     "aiff",
+    "pdf",
+    "doc",
+    "docx",
   ];
 
   static multer(folder, options) {
