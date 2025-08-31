@@ -133,6 +133,18 @@ const Website = mongoose.model(
           required: true,
         },
       },
+      termsPage: {
+        banner: {
+          type: String,
+          required: true,
+        },
+      },
+      privacyPage: {
+        banner: {
+          type: String,
+          required: true,
+        },
+      },
     },
     { timestamps: true }
   )
