@@ -19,6 +19,7 @@ const NewsletterRouter = require("./newsletter.router");
 const ProposalRouter = require("./proposal.router");
 const JobRouter = require("./job.router");
 const JobApplicationRouter = require("./job_application.router");
+const BookingRouter = require("./booking.router");
 
 class AdminRouters {
   constructor() {
@@ -49,6 +50,7 @@ class AdminRouters {
     new ProposalRouter().configureRoutes(router);
     new JobRouter().configureRoutes(router);
     new JobApplicationRouter().configureRoutes(router);
+    new BookingRouter().configureRoutes(router);
 
     app.use("/admin", router);
   }

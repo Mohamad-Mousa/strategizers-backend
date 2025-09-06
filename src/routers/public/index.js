@@ -13,6 +13,8 @@ const TeamRouter = require("./team.router");
 const NewsletterRouter = require("./newsletter.router");
 const ProposalRouter = require("./proposal.router");
 const JobRouter = require("./job.router");
+const BookingRouter = require("./booking.router");
+const CalendlyWebhookRouter = require("./calendly_webhook.router");
 
 class PublicRouters {
   constructor() {}
@@ -33,6 +35,8 @@ class PublicRouters {
     new NewsletterRouter().configureRoutes(router);
     new ProposalRouter().configureRoutes(router);
     new JobRouter().configureRoutes(router);
+    new BookingRouter().configureRoutes(router);
+    new CalendlyWebhookRouter().configureRoutes(router);
     app.use("/public", router);
   }
 }
