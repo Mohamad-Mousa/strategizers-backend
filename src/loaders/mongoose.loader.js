@@ -43,6 +43,8 @@ class MongooseLoader {
     this.models.Newsletter = require("../models/newsletter.model");
     this.models.Team = require("../models/team.model");
     this.models.Proposal = require("../models/proposal.model");
+    this.models.Job = require("../models/job.model");
+    this.models.JobApplication = require("../models/job_application.model");
   }
 
   static connect() {

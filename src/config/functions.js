@@ -14,4 +14,6 @@ module.exports = {
   teams: "teams",
   newsletters: "newsletters",
   proposals: "proposals",
+  jobs: "jobs",
+  jobApplications: "jobApplications",
 };

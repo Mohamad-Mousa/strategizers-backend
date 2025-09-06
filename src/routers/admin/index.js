@@ -17,6 +17,8 @@ const ProjectRouter = require("./project.router");
 const TeamRouter = require("./team.router");
 const NewsletterRouter = require("./newsletter.router");
 const ProposalRouter = require("./proposal.router");
+const JobRouter = require("./job.router");
+const JobApplicationRouter = require("./job_application.router");
 
 class AdminRouters {
   constructor() {
@@ -45,6 +47,8 @@ class AdminRouters {
     new TeamRouter().configureRoutes(router);
     new NewsletterRouter().configureRoutes(router);
     new ProposalRouter().configureRoutes(router);
+    new JobRouter().configureRoutes(router);
+    new JobApplicationRouter().configureRoutes(router);
 
     app.use("/admin", router);
   }

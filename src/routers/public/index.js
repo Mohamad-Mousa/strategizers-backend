@@ -12,6 +12,7 @@ const ProjectRouter = require("./project.router");
 const TeamRouter = require("./team.router");
 const NewsletterRouter = require("./newsletter.router");
 const ProposalRouter = require("./proposal.router");
+const JobRouter = require("./job.router");
 
 class PublicRouters {
   constructor() {}
@@ -31,6 +32,7 @@ class PublicRouters {
     new TeamRouter().configureRoutes(router);
     new NewsletterRouter().configureRoutes(router);
     new ProposalRouter().configureRoutes(router);
+    new JobRouter().configureRoutes(router);
     app.use("/public", router);
   }
 }
