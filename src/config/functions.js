@@ -13,4 +13,5 @@ module.exports = {
   projects: "projects",
   teams: "teams",
   newsletters: "newsletters",
+  proposals: "proposals",
 };

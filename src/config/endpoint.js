@@ -1,6 +1,6 @@
 module.exports = {
   endpoints: [
-    // admin endpoints
+    // Admin Endpoints
     {
       folder: "Admins",
       auth: { type: "bearer", token: "{{adminToken}}" },
@@ -1586,8 +1586,44 @@ module.exports = {
             },
           ],
         },
+        {
+          folder: "Proposals",
+          auth: null,
+          items: [
+            {
+              name: "Find Many",
+              method: "GET",
+              url: "{{local}}/admin/proposal",
+              params: [
+                { key: "page", value: "1", type: "query" },
+                { key: "limit", value: "10", type: "query" },
+                { key: "sortBy", value: "createdAt", type: "query" },
+                { key: "sortDirection", value: "desc", type: "query" },
+                { key: "term", value: "", type: "query" },
+              ],
+            },
+            {
+              name: "Find One",
+              method: "GET",
+              url: "{{local}}/admin/proposal/:id",
+              params: [],
+            },
+            {
+              name: "Update",
+              method: "PUT",
+              url: "{{local}}/admin/proposal/update",
+              bodyType: "raw",
+              body: {
+                _id: "<id>",
+                isRead: "true",
+              },
+              params: [],
+            },
+          ],
+        },
       ],
     },
+    // Public Endpoints
     {
       folder: "Public",
       auth: null,
@@ -1811,6 +1847,39 @@ module.exports = {
               name: "Unsubscribe",
               method: "DELETE",
               url: "{{local}}/public/newsletter/unsubscribe/:email",
+              params: [],
+            },
+          ],
+        },
+        {
+          folder: "Proposal",
+          auth: null,
+          items: [
+            {
+              name: "Create",
+              method: "POST",
+              url: "{{local}}/public/proposal",
+              bodyType: "form-data",
+              fields: [
+                { key: "title", value: "title", type: "text" },
+                { key: "firstName", value: "John Doe", type: "text" },
+                { key: "lastName", value: "Doe", type: "text" },
+                { key: "jobTitle", value: "Software Engineer", type: "text" },
+                { key: "email", value: "john.doe@example.com", type: "text" },
+                { key: "phone[code]", value: "phone.code", type: "text" },
+                { key: "phone[number]", value: "phone.number", type: "text" },
+                { key: "country", value: "United States", type: "text" },
+                {
+                  key: "areaOfInterest",
+                  value: "Software Development",
+                  type: "text",
+                },
+                { key: "industry", value: "Technology", type: "text" },
+                { key: "companyName", value: "Example Inc.", type: "text" },
+                { key: "yearlyRevenue", value: "100000", type: "text" },
+                { key: "document", value: "document.pdf", type: "file" },
+                { key: "comment", value: "Comment", type: "text" },
+              ],
               params: [],
             },
           ],

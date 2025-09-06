@@ -25,7 +25,7 @@ class PostmanService {
         new Variable({ key: "local", value: "http://localhost:3000/api/v1" }),
         new Variable({
           key: "prod",
-          value: "https://api.strategizers.com/api/v1",
+          value: "https://https://api-strat.othmanconstruction.com/api/v1",
         }),
         new Variable({ key: "adminToken", value: "" }),
       ],
