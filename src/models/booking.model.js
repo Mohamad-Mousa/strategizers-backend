@@ -35,15 +35,15 @@ const Booking = mongoose.model(
       businessPhone: Phone,
       calendlyLink: {
         type: String,
-        required: true,
+        // required: true,
       },
       calendlyEventUri: {
         type: String,
-        default: null,
+        // default: null,
       },
       calendlyInviteeUri: {
         type: String,
-        default: null,
+        // default: null,
       },
       status: {
         type: String,
@@ -52,11 +52,11 @@ const Booking = mongoose.model(
       },
       scheduledAt: {
         type: Date,
-        default: null,
+        // default: null,
       },
       meetingNotes: {
         type: String,
-        default: null,
+        // default: null,
       },
       isRead: {
         type: Boolean,

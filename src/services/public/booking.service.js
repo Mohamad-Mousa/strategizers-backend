@@ -23,41 +23,44 @@ class BookingService extends BaseService {
       "businessPhone.number",
     ]);
 
-    try {
-      const calendlyResponse = await this.calendlyService.createSchedulingLink({
-        maxEventCount: 1,
-      });
+    const booking = await this.Booking.create(body);
+    return { booking };
 
-      const bookingData = {
-        ...body,
-        calendlyLink: calendlyResponse.resource.booking_url,
-        status: "pending",
-      };
+    // try {
+    //   const calendlyResponse = await this.calendlyService.createSchedulingLink({
+    //     maxEventCount: 1,
+    //   });
 
-      const booking = await this.Booking.create(bookingData);
+    //   const bookingData = {
+    //     ...body,
+    //     calendlyLink: calendlyResponse.resource.booking_url,
+    //     status: "pending",
+    //   };
 
-      return {
-        booking,
-        calendlyLink: calendlyResponse.resource.booking_url,
-      };
-    } catch (error) {
-      console.error("Calendly integration failed:", error.message);
+    //   const booking = await this.Booking.create(bookingData);
 
-      const bookingData = {
-        ...body,
-        calendlyLink: "https://calendly.com/your-username/meeting",
-        status: "pending",
-      };
+    //   return {
+    //     booking,
+    //     calendlyLink: calendlyResponse.resource.booking_url,
+    //   };
+    // } catch (error) {
+    //   console.error("Calendly integration failed:", error.message);
 
-      const booking = await this.Booking.create(bookingData);
+    //   const bookingData = {
+    //     ...body,
+    //     calendlyLink: "https://calendly.com/your-username/meeting",
+    //     status: "pending",
+    //   };
 
-      return {
-        booking,
-        calendlyLink: bookingData.calendlyLink,
-        warning:
-          "Calendly integration temporarily unavailable. Please contact us directly.",
-      };
-    }
+    //   const booking = await this.Booking.create(bookingData);
+
+    //   return {
+    //     booking,
+    //     calendlyLink: bookingData.calendlyLink,
+    //     warning:
+    //       "Calendly integration temporarily unavailable. Please contact us directly.",
+    //   };
+    // }
   }
 
   async findOne(id) {

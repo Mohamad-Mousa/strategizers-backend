@@ -11,12 +11,7 @@ class BookingController {
   create = asyncHandler(async (req, res) => {
     try {
       const result = await this.bookingService.create(req.body);
-      ResponseService.success(
-        res,
-        "Booking request created successfully! Please use the provided link to schedule your meeting.",
-        result,
-        201
-      );
+      ResponseService.success(res, "Success!", result, 201);
     } catch (error) {
       ResponseService.error(res, error.message, 400);
     }
@@ -25,12 +20,7 @@ class BookingController {
   findOne = asyncHandler(async (req, res) => {
     try {
       const result = await this.bookingService.findOne(req.params.id);
-      ResponseService.success(
-        res,
-        "Booking details retrieved successfully!",
-        result,
-        200
-      );
+      ResponseService.success(res, "Success!", result, 200);
     } catch (error) {
       ResponseService.error(res, error.message, 404);
     }
@@ -43,12 +33,7 @@ class BookingController {
         req.body.status,
         req.body.eventData
       );
-      ResponseService.success(
-        res,
-        "Booking status updated successfully!",
-        result,
-        200
-      );
+      ResponseService.success(res, "Success!", result, 200);
     } catch (error) {
       ResponseService.error(res, error.message, 400);
     }

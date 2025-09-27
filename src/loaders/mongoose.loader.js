@@ -45,6 +45,7 @@ class MongooseLoader {
     this.models.Proposal = require("../models/proposal.model");
     this.models.Job = require("../models/job.model");
     this.models.JobApplication = require("../models/job_application.model");
+    this.models.Booking = require("../models/booking.model");
   }
 
   static connect() {
