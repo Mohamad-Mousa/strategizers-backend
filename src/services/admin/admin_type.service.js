@@ -15,6 +15,7 @@ class AdminTypeService extends BaseService {
       ? StringFormatter.escapeBackslashAndPlus(req_query.term)
       : "";
     let query = {
+      isDeleted: false,
       ...(req_query.term && { name: { $regex: new RegExp(regexSearch, "i") } }),
     };
 

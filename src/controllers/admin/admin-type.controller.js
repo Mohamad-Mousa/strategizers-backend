@@ -29,7 +29,7 @@ class AdminTypeController {
         function_Keys.adminTypes,
         "Admin Created a new admin type."
       );
-      ResponseService.success(res, "Success!", null, 200);
+      ResponseService.success(res, "Success!", null, 201);
     } catch (error) {
       ResponseService.error(res, error.message, 400);
     }

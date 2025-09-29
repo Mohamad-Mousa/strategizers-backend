@@ -29,7 +29,7 @@ class AdminController {
         function_Keys.admins,
         "Admin Created a new admin."
       );
-      ResponseService.success(res, "Success!", admin, 200);
+      ResponseService.success(res, "Success!", admin, 201);
     } catch (error) {
       ResponseService.error(res, error.message, 400);
     }

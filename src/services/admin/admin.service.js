@@ -103,7 +103,7 @@ class AdminService extends BaseService {
     if (body.email) {
       const existingAdmin = await this.Admin.findOne({
         email: body.email,
-        _id: { $ne: body._id },
+        _id: { $ne: body.admin_id },
         isDeleted: false,
       });
       if (existingAdmin) {
