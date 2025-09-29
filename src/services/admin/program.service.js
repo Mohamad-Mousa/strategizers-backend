@@ -1,16 +1,13 @@
-const bcrypt = require("bcryptjs");
 const BaseService = require("../core/base.service");
 const StringFormatter = require("../core/string_formatter");
 const handleUploadService = require("../core/handle_uploads.service");
 const CustomError = require("../core/custom_error.service");
-const BodyValidationService = require("../core/body_validation.service");
 
-class ServiceService extends BaseService {
+class ProgramService extends BaseService {
   constructor() {
     super();
-    this.Service = this.models.Service;
+    this.Program = this.models.Program;
     this.handleUploadService = handleUploadService;
-    this.bodyValidationService = BodyValidationService;
   }
 
   async findMany(req_query, limit = 10) {
@@ -20,12 +17,14 @@ class ServiceService extends BaseService {
       : "";
     let query = {
       isDeleted: false,
-      isActive: true,
       ...(req_query.term && {
         $or: [
           { "title.en": { $regex: new RegExp(regexSearch, "i") } },
           { "title.ar": { $regex: new RegExp(regexSearch, "i") } },
         ],
+      }),
+      ...(req_query.isActive !== undefined && {
+        isActive: req_query.isActive === "true",
       }),
     };
 
@@ -38,19 +37,20 @@ class ServiceService extends BaseService {
     } else {
       pipes.push({ $sort: { createdAt: -1 } });
     }
-    let result = await this.Service.aggregate([
+
+    let result = await this.Program.aggregate([
       { $match: query },
-      ...pipes,
       {
         $project: {
-          _id: 1,
           title: 1,
-          slug: 1,
-          icon: 1,
-          shortDescription: 1,
           image: 1,
+          isActive: 1,
+          isDeleted: 1,
+          createdAt: 1,
+          updatedAt: 1,
         },
       },
+      ...pipes,
       {
         $facet: {
           data: [
@@ -61,6 +61,7 @@ class ServiceService extends BaseService {
         },
       },
     ]);
+
     let data = result[0].data;
     let totalCount = result[0].totalCount[0]
       ? result[0].totalCount[0].total
@@ -68,17 +69,59 @@ class ServiceService extends BaseService {
     return { data, totalCount };
   }
 
-  async findOne(slug) {
-    const service = await this.Service.findOne({
-      slug,
+  async findOne(id) {
+    const program = await this.Program.findOne({
+      _id: this.ObjectId(id),
       isDeleted: false,
-      isActive: true,
     });
-    if (!service) {
-      throw new CustomError("Service not found", 404);
+    if (!program) {
+      throw new CustomError("Program not found", 404);
     }
-    return { service };
+    return { program };
+  }
+
+  async create(body, file) {
+    if (file) {
+      body.image = file.filename;
+    }
+
+    if (!body.image) {
+      throw new CustomError("Image is required", 400);
+    }
+
+    if (!body.title || (!body.title.en && !body.title.ar)) {
+      throw new CustomError("Title is required in at least one language", 400);
+    }
+
+    const program = await this.Program.create(body);
+    return { program };
+  }
+
+  async update(body, file) {
+    if (file) {
+      body.image = file.filename;
+    }
+
+    if (!body._id) {
+      throw new CustomError("Program ID is required", 400);
+    }
+
+    const existingProgram = await this.Program.findOne({
+      _id: this.ObjectId(body._id),
+      isDeleted: false,
+    });
+
+    if (!existingProgram) {
+      throw new CustomError("Program not found", 404);
+    }
+
+    await this.Program.updateOne({ _id: this.ObjectId(body._id) }, body);
+  }
+
+  async delete(ids) {
+    ids = ids.split(",");
+    await this.Program.updateMany({ _id: { $in: ids } }, { isDeleted: true });
   }
 }
 
-module.exports = ServiceService;
+module.exports = ProgramService;

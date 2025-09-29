@@ -17,4 +17,5 @@ module.exports = {
   jobs: "jobs",
   jobApplications: "jobApplications",
   bookings: "bookings",
+  academies: "academies",
 };

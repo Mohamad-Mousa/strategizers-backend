@@ -1790,6 +1790,251 @@ module.exports = {
             },
           ],
         },
+        {
+          folder: "Programs",
+          auth: null,
+          items: [
+            {
+              name: "Find Many",
+              method: "GET",
+              url: "{{local}}/admin/program",
+              params: [
+                { key: "page", value: "1", type: "query" },
+                { key: "limit", value: "10", type: "query" },
+                { key: "sortBy", value: "createdAt", type: "query" },
+                { key: "sortDirection", value: "desc", type: "query" },
+                { key: "term", value: "", type: "query" },
+              ],
+            },
+            {
+              name: "Find One",
+              method: "GET",
+              url: "{{local}}/admin/program/:id",
+              params: [],
+            },
+            {
+              name: "Create",
+              method: "POST",
+              url: "{{local}}/admin/program",
+              bodyType: "form-data",
+              fields: [
+                { key: "title[en]", value: "Program Title", type: "text" },
+                { key: "title[ar]", value: "Program Title", type: "text" },
+                { key: "image", value: "path/to/image.jpg", type: "file" },
+              ],
+              params: [],
+            },
+            {
+              name: "Update",
+              method: "PUT",
+              url: "{{local}}/admin/program/update",
+              bodyType: "form-data",
+              fields: [
+                { key: "_id", value: "<id>", type: "text" },
+                {
+                  key: "title[en]",
+                  value: "Updated Program Title",
+                  type: "text",
+                },
+                {
+                  key: "title[ar]",
+                  value: "Updated Program Title",
+                  type: "text",
+                },
+                {
+                  key: "image",
+                  value: "path/to/updated-image.jpg",
+                  type: "file",
+                },
+              ],
+              params: [],
+            },
+            {
+              name: "Delete",
+              method: "DELETE",
+              url: "{{local}}/admin/program/delete/:ids",
+              params: [],
+            },
+          ],
+        },
+        {
+          folder: "Program Categories",
+          auth: null,
+          items: [
+            {
+              name: "Find Many",
+              method: "GET",
+              url: "{{local}}/admin/program-category",
+              params: [
+                { key: "page", value: "1", type: "query" },
+                { key: "limit", value: "10", type: "query" },
+                { key: "sortBy", value: "createdAt", type: "query" },
+                { key: "sortDirection", value: "desc", type: "query" },
+                { key: "term", value: "", type: "query" },
+                { key: "program", value: "", type: "query" },
+              ],
+            },
+            {
+              name: "Find One",
+              method: "GET",
+              url: "{{local}}/admin/program-category/:id",
+              params: [],
+            },
+            {
+              name: "Create",
+              method: "POST",
+              url: "{{local}}/admin/program-category",
+              bodyType: "raw",
+              body: {
+                title: {
+                  en: "<string>",
+                  ar: "<string>",
+                },
+                program: "<string>",
+              },
+              params: [],
+            },
+            {
+              name: "Update",
+              method: "PUT",
+              url: "{{local}}/admin/program-category/update",
+              bodyType: "raw",
+              body: {
+                _id: "<id>",
+                title: {
+                  en: "<string>",
+                  ar: "<string>",
+                },
+                program: "<string>",
+              },
+              params: [],
+            },
+            {
+              name: "Delete",
+              method: "DELETE",
+              url: "{{local}}/admin/program-category/delete/:ids",
+              params: [],
+            },
+          ],
+        },
+        {
+          folder: "Courses",
+          auth: null,
+          items: [
+            {
+              name: "Find Many",
+              method: "GET",
+              url: "{{local}}/admin/course",
+              params: [
+                { key: "page", value: "1", type: "query" },
+                { key: "limit", value: "10", type: "query" },
+                { key: "sortBy", value: "createdAt", type: "query" },
+                { key: "sortDirection", value: "desc", type: "query" },
+                { key: "term", value: "", type: "query" },
+                { key: "programCategory", value: "", type: "query" },
+              ],
+            },
+            {
+              name: "Find One",
+              method: "GET",
+              url: "{{local}}/admin/course/:id",
+              params: [],
+            },
+            {
+              name: "Create",
+              method: "POST",
+              url: "{{local}}/admin/course",
+              bodyType: "form-data",
+              fields: [
+                { key: "title[en]", value: "Course Title", type: "text" },
+                { key: "title[ar]", value: "Course Title", type: "text" },
+                {
+                  key: "shortDescription[en]",
+                  value: "Course Short Description",
+                  type: "text",
+                },
+                {
+                  key: "shortDescription[ar]",
+                  value: "Course Short Description",
+                  type: "text",
+                },
+                {
+                  key: "longDescription[en]",
+                  value: "Course Long Description",
+                  type: "text",
+                },
+                {
+                  key: "longDescription[ar]",
+                  value: "Course Long Description",
+                  type: "text",
+                },
+                { key: "image", value: "path/to/image.jpg", type: "file" },
+                {
+                  key: "programCategory",
+                  value: "programCategory",
+                  type: "text",
+                },
+              ],
+              params: [],
+            },
+            {
+              name: "Update",
+              method: "PUT",
+              url: "{{local}}/admin/course/update",
+              bodyType: "form-data",
+              fields: [
+                { key: "_id", value: "<id>", type: "text" },
+                {
+                  key: "title[en]",
+                  value: "Updated Course Title",
+                  type: "text",
+                },
+                {
+                  key: "title[ar]",
+                  value: "Updated Course Title",
+                  type: "text",
+                },
+                {
+                  key: "shortDescription[en]",
+                  value: "Updated Course Short Description",
+                  type: "text",
+                },
+                {
+                  key: "shortDescription[ar]",
+                  value: "Updated Course Short Description",
+                  type: "text",
+                },
+                {
+                  key: "longDescription[en]",
+                  value: "Updated Course Long Description",
+                  type: "text",
+                },
+                {
+                  key: "longDescription[ar]",
+                  value: "Updated Course Long Description",
+                  type: "text",
+                },
+                {
+                  key: "image",
+                  value: "path/to/updated-image.jpg",
+                  type: "file",
+                },
+                {
+                  key: "programCategory",
+                  value: "programCategory",
+                  type: "text",
+                },
+              ],
+              params: [],
+            },
+            {
+              name: "Delete",
+              method: "DELETE",
+              url: "{{local}}/admin/course/delete/:ids",
+              params: [],
+            },
+          ],
+        },
       ],
     },
     // Public Endpoints
@@ -2127,6 +2372,80 @@ module.exports = {
                   number: "<string>",
                 },
               },
+              params: [],
+            },
+          ],
+        },
+        {
+          folder: "Programs",
+          auth: null,
+          items: [
+            {
+              name: "Find Many",
+              method: "GET",
+              url: "{{local}}/public/program",
+              params: [
+                { key: "page", value: "1", type: "query" },
+                { key: "limit", value: "10", type: "query" },
+                { key: "sortBy", value: "createdAt", type: "query" },
+                { key: "sortDirection", value: "desc", type: "query" },
+                { key: "term", value: "", type: "query" },
+                { key: "program", value: "", type: "query" },
+              ],
+            },
+            {
+              name: "Find One",
+              method: "GET",
+              url: "{{local}}/public/program/:id",
+              params: [],
+            },
+          ],
+        },
+        {
+          folder: "Program Categories",
+          auth: null,
+          items: [
+            {
+              name: "Find Many",
+              method: "GET",
+              url: "{{local}}/public/program-category",
+              params: [
+                { key: "page", value: "1", type: "query" },
+                { key: "limit", value: "10", type: "query" },
+                { key: "sortBy", value: "createdAt", type: "query" },
+                { key: "sortDirection", value: "desc", type: "query" },
+                { key: "term", value: "", type: "query" },
+              ],
+            },
+            {
+              name: "Find One",
+              method: "GET",
+              url: "{{local}}/public/program-category/:id",
+              params: [],
+            },
+          ],
+        },
+        {
+          folder: "Courses",
+          auth: null,
+          items: [
+            {
+              name: "Find Many",
+              method: "GET",
+              url: "{{local}}/public/course",
+              params: [
+                { key: "page", value: "1", type: "query" },
+                { key: "limit", value: "10", type: "query" },
+                { key: "sortBy", value: "createdAt", type: "query" },
+                { key: "sortDirection", value: "desc", type: "query" },
+                { key: "term", value: "", type: "query" },
+                { key: "programCategory", value: "", type: "query" },
+              ],
+            },
+            {
+              name: "Find One",
+              method: "GET",
+              url: "{{local}}/public/course/:slug",
               params: [],
             },
           ],

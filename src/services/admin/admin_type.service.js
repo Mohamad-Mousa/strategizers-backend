@@ -90,7 +90,7 @@ class AdminTypeService extends BaseService {
       {
         ...(body.name && { name: body.name }),
         ...(body.isActive !== undefined && {
-          isActive: body.isActive === "true" ? true : false,
+          isActive: body.isActive === true ? true : false,
         }),
       }
     );

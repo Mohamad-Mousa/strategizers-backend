@@ -6,15 +6,15 @@ class CalendlyService {
     this.apiToken = process.env.CALENDLY_API_TOKEN;
     this.eventTypeUuid = process.env.CALENDLY_EVENT_TYPE_UUID;
 
-    if (!this.apiToken) {
-      console.warn("CALENDLY_API_TOKEN not found in environment variables");
-    }
+    // if (!this.apiToken) {
+    //   console.warn("CALENDLY_API_TOKEN not found in environment variables");
+    // }
 
-    if (!this.eventTypeUuid) {
-      console.warn(
-        "CALENDLY_EVENT_TYPE_UUID not found in environment variables"
-      );
-    }
+    // if (!this.eventTypeUuid) {
+    //   console.warn(
+    //     "CALENDLY_EVENT_TYPE_UUID not found in environment variables"
+    //   );
+    // }
   }
 
   /**
