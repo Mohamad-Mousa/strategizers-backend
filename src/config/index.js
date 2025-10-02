@@ -12,6 +12,7 @@ let config = {
     "http://localhost:5173",
     "http://localhost:3001",
     "https://next-strat.othmanconstruction.com",
+    "https://admin-strat.othmanconstruction.com",
   ],
 };
 
