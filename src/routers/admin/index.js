@@ -23,6 +23,7 @@ const BookingRouter = require("./booking.router");
 const ProgramRouter = require("./program.router");
 const ProgramCategoryRouter = require("./program_category.router");
 const CourseRouter = require("./course.router");
+const SeoRouter = require("./seo.router");
 
 class AdminRouters {
   constructor() {
@@ -57,6 +58,7 @@ class AdminRouters {
     new ProgramRouter().configureRoutes(router);
     new ProgramCategoryRouter().configureRoutes(router);
     new CourseRouter().configureRoutes(router);
+    new SeoRouter().configureRoutes(router);
 
     app.use("/admin", router);
   }

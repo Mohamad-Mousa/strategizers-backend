@@ -2035,6 +2035,148 @@ module.exports = {
             },
           ],
         },
+        {
+          folder: "Seo",
+          auth: null,
+          items: [
+            {
+              name: "Find Many",
+              method: "GET",
+              url: "{{local}}/admin/seo",
+              params: [],
+            },
+            {
+              name: "Update",
+              method: "PUT",
+              url: "{{local}}/admin/seo/update",
+              bodyType: "raw",
+              body: {
+                homePage: {
+                  title: {
+                    en: "<string>",
+                    ar: "<string>",
+                  },
+                  description: {
+                    en: "<string>",
+                    ar: "<string>",
+                  },
+                  tags: [{ en: "<string>", ar: "<string>" }],
+                },
+                aboutPage: {
+                  title: {
+                    en: "<string>",
+                    ar: "<string>",
+                  },
+                  description: {
+                    en: "<string>",
+                    ar: "<string>",
+                  },
+                  tags: [{ en: "<string>", ar: "<string>" }],
+                },
+                servicePage: {
+                  title: {
+                    en: "<string>",
+                    ar: "<string>",
+                  },
+                  description: {
+                    en: "<string>",
+                    ar: "<string>",
+                  },
+                  tags: [{ en: "<string>", ar: "<string>" }],
+                },
+                blogPage: {
+                  title: {
+                    en: "<string>",
+                    ar: "<string>",
+                  },
+                  description: {
+                    en: "<string>",
+                    ar: "<string>",
+                  },
+                  tags: [{ en: "<string>", ar: "<string>" }],
+                },
+                projectPage: {
+                  title: {
+                    en: "<string>",
+                    ar: "<string>",
+                  },
+                  description: {
+                    en: "<string>",
+                    ar: "<string>",
+                  },
+                  tags: [{ en: "<string>", ar: "<string>" }],
+                },
+                contactPage: {
+                  title: {
+                    en: "<string>",
+                    ar: "<string>",
+                  },
+                  description: {
+                    en: "<string>",
+                    ar: "<string>",
+                  },
+                  tags: [{ en: "<string>", ar: "<string>" }],
+                },
+                teamPage: {
+                  title: {
+                    en: "<string>",
+                    ar: "<string>",
+                  },
+                  description: {
+                    en: "<string>",
+                    ar: "<string>",
+                  },
+                  tags: [{ en: "<string>", ar: "<string>" }],
+                },
+                faqPage: {
+                  title: {
+                    en: "<string>",
+                    ar: "<string>",
+                  },
+                  description: {
+                    en: "<string>",
+                    ar: "<string>",
+                  },
+                  tags: [{ en: "<string>", ar: "<string>" }],
+                },
+                testimonialPage: {
+                  title: {
+                    en: "<string>",
+                    ar: "<string>",
+                  },
+                  description: {
+                    en: "<string>",
+                    ar: "<string>",
+                  },
+                  tags: [{ en: "<string>", ar: "<string>" }],
+                },
+                termsPage: {
+                  title: {
+                    en: "<string>",
+                    ar: "<string>",
+                  },
+                  description: {
+                    en: "<string>",
+                    ar: "<string>",
+                  },
+                  tags: [{ en: "<string>", ar: "<string>" }],
+                },
+                privacyPage: {
+                  title: {
+                    en: "<string>",
+                    ar: "<string>",
+                  },
+                  description: {
+                    en: "<string>",
+                    ar: "<string>",
+                  },
+                  tags: [{ en: "<string>", ar: "<string>" }],
+                },
+              },
+              params: [],
+            },
+          ],
+        },
       ],
     },
     // Public Endpoints

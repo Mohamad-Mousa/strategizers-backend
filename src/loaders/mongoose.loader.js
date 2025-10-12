@@ -49,6 +49,7 @@ class MongooseLoader {
     this.models.Program = require("../models/program.model");
     this.models.ProgramCategory = require("../models/program_category.model");
     this.models.Course = require("../models/course.model");
+    this.models.Seo = require("../models/seo.model");
   }
 
   static connect() {
