@@ -55,8 +55,30 @@ class WebsiteService extends BaseService {
       blogs,
       services,
       partners,
-      seo,
     };
+
+    // Add SEO data to each page
+    if (seo) {
+      const pages = [
+        "homePage",
+        "aboutPage",
+        "servicePage",
+        "blogPage",
+        "projectPage",
+        "contactPage",
+        "teamPage",
+        "faqPage",
+        "testimonialPage",
+        "termsPage",
+        "privacyPage",
+      ];
+
+      pages.forEach((page) => {
+        if (website[page] && seo[page]) {
+          website[page].seo = seo[page];
+        }
+      });
+    }
 
     return website;
   }
