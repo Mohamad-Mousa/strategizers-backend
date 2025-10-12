@@ -145,6 +145,30 @@ const Website = mongoose.model(
           required: true,
         },
       },
+      bookingPage: {
+        banner: {
+          type: String,
+          required: true,
+        },
+      },
+      careerPage: {
+        banner: {
+          type: String,
+          required: true,
+        },
+      },
+      coursePage: {
+        banner: {
+          type: String,
+          required: true,
+        },
+      },
+      proposalPage: {
+        banner: {
+          type: String,
+          required: true,
+        },
+      },
     },
     { timestamps: true }
   )

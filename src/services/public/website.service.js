@@ -71,6 +71,10 @@ class WebsiteService extends BaseService {
         "testimonialPage",
         "termsPage",
         "privacyPage",
+        "bookingPage",
+        "careerPage",
+        "coursePage",
+        "proposalPage",
       ];
 
       pages.forEach((page) => {
