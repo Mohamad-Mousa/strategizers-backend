@@ -9,6 +9,7 @@ class WebsiteService extends BaseService {
     this.Blog = this.models.Blog;
     this.Service = this.models.Service;
     this.Partner = this.models.Partner;
+    this.Seo = this.models.Seo;
   }
 
   async findMany() {
@@ -44,6 +45,8 @@ class WebsiteService extends BaseService {
       createdAt: -1,
     });
 
+    const seo = await this.Seo.findOne();
+
     website = website.toObject();
     website.homePage = {
       ...website.homePage,
@@ -52,6 +55,7 @@ class WebsiteService extends BaseService {
       blogs,
       services,
       partners,
+      seo,
     };
 
     return website;
