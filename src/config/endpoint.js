@@ -2172,6 +2172,50 @@ module.exports = {
                   },
                   tags: [{ en: "<string>", ar: "<string>" }],
                 },
+                bookingPage: {
+                  title: {
+                    en: "<string>",
+                    ar: "<string>",
+                  },
+                  description: {
+                    en: "<string>",
+                    ar: "<string>",
+                  },
+                  tags: [{ en: "<string>", ar: "<string>" }],
+                },
+                careerPage: {
+                  title: {
+                    en: "<string>",
+                    ar: "<string>",
+                  },
+                  description: {
+                    en: "<string>",
+                    ar: "<string>",
+                  },
+                  tags: [{ en: "<string>", ar: "<string>" }],
+                },
+                coursePage: {
+                  title: {
+                    en: "<string>",
+                    ar: "<string>",
+                  },
+                  description: {
+                    en: "<string>",
+                    ar: "<string>",
+                  },
+                  tags: [{ en: "<string>", ar: "<string>" }],
+                },
+                proposalPage: {
+                  title: {
+                    en: "<string>",
+                    ar: "<string>",
+                  },
+                  description: {
+                    en: "<string>",
+                    ar: "<string>",
+                  },
+                  tags: [{ en: "<string>", ar: "<string>" }],
+                },
               },
               params: [],
             },

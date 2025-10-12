@@ -59,6 +59,26 @@ const Seo = mongoose.model(
         description: Content,
         tags: [Content],
       },
+      bookingPage: {
+        title: Content,
+        description: Content,
+        tags: [Content],
+      },
+      careerPage: {
+        title: Content,
+        description: Content,
+        tags: [Content],
+      },
+      coursePage: {
+        title: Content,
+        description: Content,
+        tags: [Content],
+      },
+      proposalPage: {
+        title: Content,
+        description: Content,
+        tags: [Content],
+      },
     },
     { timestamps: true }
   )
