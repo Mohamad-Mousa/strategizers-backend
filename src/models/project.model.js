@@ -43,7 +43,18 @@ const Project = mongoose.model(
         type: Date,
         required: true,
       },
-      tags: [String],
+      tags: [
+        {
+          en: {
+            type: String,
+            required: true,
+          },
+          ar: {
+            type: String,
+            required: true,
+          },
+        },
+      ],
       isActive: {
         type: Boolean,
         default: true,

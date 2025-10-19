@@ -28,6 +28,10 @@ class WebsiteService extends BaseService {
       isFeatured: true,
     }).limit(3);
     const blogs = await this.Blog.find({ isActive: true })
+      .populate({
+        path: "service",
+        select: "title",
+      })
       .sort({
         createdAt: -1,
       })

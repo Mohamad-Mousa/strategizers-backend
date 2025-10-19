@@ -116,17 +116,17 @@ class BlogService extends BaseService {
       body.image = file.filename;
     }
 
-    if (body.title.en) {
+    if (body.title && body.title.en) {
       body.slug = StringFormatter.slugify(body.title.en);
-    }
 
-    const existingBlog = await this.Blog.findOne({
-      slug: body.slug,
-      _id: { $ne: body._id },
-    });
+      const existingBlog = await this.Blog.findOne({
+        slug: body.slug,
+        _id: { $ne: body._id },
+      });
 
-    if (existingBlog) {
-      throw new CustomError("Blog with this title already exists", 400);
+      if (existingBlog) {
+        throw new CustomError("Blog with this title already exists", 400);
+      }
     }
 
     const blog = await this.Blog.findByIdAndUpdate(body._id, {

@@ -24,7 +24,18 @@ const Blog = mongoose.model(
         type: String,
         required: true,
       },
-      tags: [String],
+      tags: [
+        {
+          en: {
+            type: String,
+            required: true,
+          },
+          ar: {
+            type: String,
+            required: true,
+          },
+        },
+      ],
       isActive: {
         type: Boolean,
         default: true,
