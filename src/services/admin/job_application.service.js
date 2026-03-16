@@ -23,7 +23,6 @@ class JobApplicationService extends BaseService {
         ],
       }),
       ...(req_query.job && { job: this.ObjectId(req_query.job) }),
-      ...(req_query.gender && { gender: req_query.gender }),
     };
     let pipes = [];
     if (req_query.sortBy) {
@@ -56,15 +55,10 @@ class JobApplicationService extends BaseService {
           lastName: 1,
           email: 1,
           phone: 1,
-          gender: 1,
-          dob: 1,
           message: 1,
           document: 1,
           job: 1,
-          job: {
-            title: 1,
-            type: 1,
-          },
+          isRead: 1,
           createdAt: 1,
           updatedAt: 1,
         },

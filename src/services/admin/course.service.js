@@ -2,12 +2,13 @@ const BaseService = require("../core/base.service");
 const StringFormatter = require("../core/string_formatter");
 const CustomError = require("../core/custom_error.service");
 const BodyValidationService = require("../core/body_validation.service");
+const qs = require("qs");
 
 class CourseService extends BaseService {
   constructor() {
     super();
     this.Course = this.models.Course;
-    this.ProgramCategory = this.models.ProgramCategory;
+    this.AcademyCategory = this.models.AcademyCategory;
     this.bodyValidationService = BodyValidationService;
   }
 
@@ -23,12 +24,12 @@ class CourseService extends BaseService {
         $or: [
           { "title.en": { $regex: new RegExp(regexSearch, "i") } },
           { "title.ar": { $regex: new RegExp(regexSearch, "i") } },
-          { "shortDescription.en": { $regex: new RegExp(regexSearch, "i") } },
-          { "shortDescription.ar": { $regex: new RegExp(regexSearch, "i") } },
+          { "programOverview.en": { $regex: new RegExp(regexSearch, "i") } },
+          { "programOverview.ar": { $regex: new RegExp(regexSearch, "i") } },
         ],
       }),
-      ...(req_query.programCategory && {
-        programCategory: this.ObjectId(req_query.programCategory),
+      ...(req_query.academyCategory && {
+        academyCategory: this.ObjectId(req_query.academyCategory),
       }),
       ...(req_query.isActive !== undefined && {
         isActive: req_query.isActive === "true",
@@ -49,23 +50,31 @@ class CourseService extends BaseService {
       { $match: query },
       {
         $lookup: {
-          from: "programcategories",
-          localField: "programCategory",
+          from: "academycategories",
+          localField: "academyCategory",
           foreignField: "_id",
-          as: "programCategory",
+          as: "academyCategory",
         },
       },
       {
-        $unwind: { path: "$programCategory", preserveNullAndEmptyArrays: true },
+        $unwind: { path: "$academyCategory", preserveNullAndEmptyArrays: true },
       },
       {
         $project: {
           title: 1,
-          shortDescription: 1,
-          longDescription: 1,
+          programOverview: 1,
+          programObjectives: 1,
+          targetAudience: 1,
+          expectedOrganizationalBenefits: 1,
+          programDuration: 1,
+          programDurationDetails: 1,
+          deliveryFormat: 1,
+          programMethodology: 1,
+          programOutline: 1,
+          samplePracticalActivities: 1,
           image: 1,
           slug: 1,
-          programCategory: 1,
+          academyCategory: 1,
           isActive: 1,
           isDeleted: 1,
           createdAt: 1,
@@ -94,7 +103,7 @@ class CourseService extends BaseService {
     const course = await this.Course.findOne({
       _id: this.ObjectId(id),
       isDeleted: false,
-    }).populate("programCategory");
+    }).populate("academyCategory");
     if (!course) {
       throw new CustomError("Course not found", 404);
     }
@@ -102,14 +111,14 @@ class CourseService extends BaseService {
   }
 
   async create(body, file) {
+    body = this._parseCourseBody(body);
+
     this.bodyValidationService.validateRequiredFields(body, [
       "title.en",
       "title.ar",
-      "shortDescription.en",
-      "shortDescription.ar",
-      "longDescription.en",
-      "longDescription.ar",
-      "programCategory",
+      "programOverview.en",
+      "programOverview.ar",
+      "academyCategory",
     ]);
 
     if (file) {
@@ -119,7 +128,6 @@ class CourseService extends BaseService {
     if (!body.image) {
       throw new CustomError("Image is required", 400);
     }
-
     body.slug = StringFormatter.slugify(body.title.en || body.title.ar);
 
     const exists = await this.Course.findOne({
@@ -143,6 +151,7 @@ class CourseService extends BaseService {
       throw new CustomError("Course ID is required", 400);
     }
 
+    body = this._parseCourseBody(body);
     if (body.title && (body.title.en || body.title.ar)) {
       body.slug = StringFormatter.slugify(body.title.en || body.title.ar);
       const exists = await this.Course.findOne({
@@ -156,6 +165,62 @@ class CourseService extends BaseService {
     }
 
     await this.Course.updateOne({ _id: this.ObjectId(body._id) }, body);
+  }
+
+  _parseCourseBody(body) {
+    const hasFlatKeys = Object.keys(body).some((k) =>
+      typeof k === "string" && k.includes("[")
+    );
+    if (hasFlatKeys) {
+      const flatEntries = Object.entries(body)
+        .filter(
+          ([k, v]) =>
+            typeof k === "string" &&
+            typeof v === "string" &&
+            v !== "" &&
+            k !== "image"
+        )
+        .map(([k, v]) => `${k}=${encodeURIComponent(v)}`)
+        .join("&");
+      body = qs.parse(flatEntries) || body;
+    }
+    const arrayFields = [
+      "programObjectives",
+      "targetAudience",
+      "expectedOrganizationalBenefits",
+      "deliveryFormat",
+      "programMethodology",
+      "samplePracticalActivities",
+    ];
+    for (const field of arrayFields) {
+      if (body[field] !== undefined && typeof body[field] === "string") {
+        try {
+          body[field] = JSON.parse(body[field]) || [];
+        } catch {
+          body[field] = [];
+        }
+      }
+      if (body[field] && !Array.isArray(body[field])) {
+        body[field] = Object.keys(body[field])
+          .sort((a, b) => Number(a) - Number(b))
+          .map((i) => body[field][i])
+          .filter(Boolean);
+      }
+    }
+    if (body.programOutline !== undefined && typeof body.programOutline === "string") {
+      try {
+        body.programOutline = JSON.parse(body.programOutline) || [];
+      } catch {
+        body.programOutline = [];
+      }
+    }
+    if (body.programOutline && !Array.isArray(body.programOutline)) {
+      body.programOutline = Object.keys(body.programOutline)
+        .sort((a, b) => Number(a) - Number(b))
+        .map((i) => body.programOutline[i])
+        .filter(Boolean);
+    }
+    return body;
   }
 
   async delete(ids) {

@@ -1,20 +1,20 @@
 const asyncHandler = require("express-async-handler");
 
 const ResponseService = require("../../services/core/response.service");
-const ProgramService = require("../../services/admin/program.service");
+const AcademyCategoryService = require("../../services/admin/academy_category.service");
 const UserLogService = require("../../services/admin/user_log.service");
 const function_Keys = require("../../config/functions");
 
-class ProgramController {
+class AcademyCategoryController {
   constructor() {
-    this.programService = new ProgramService();
+    this.academyCategoryService = new AcademyCategoryService();
     this.UserLogService = new UserLogService();
   }
 
   findMany = asyncHandler(async (req, res) => {
     try {
-      const programs = await this.programService.findMany(req.query);
-      ResponseService.success(res, "Success!", programs, 200);
+      const categories = await this.academyCategoryService.findMany(req.query);
+      ResponseService.success(res, "Success!", categories, 200);
     } catch (error) {
       ResponseService.error(res, error.message, 400);
     }
@@ -22,8 +22,8 @@ class ProgramController {
 
   findOne = asyncHandler(async (req, res) => {
     try {
-      const program = await this.programService.findOne(req.params.id);
-      ResponseService.success(res, "Success!", program, 200);
+      const category = await this.academyCategoryService.findOne(req.params.id);
+      ResponseService.success(res, "Success!", category, 200);
     } catch (error) {
       ResponseService.error(res, error.message, 400);
     }
@@ -31,14 +31,14 @@ class ProgramController {
 
   create = asyncHandler(async (req, res) => {
     try {
-      const program = await this.programService.create(req.body, req.file);
+      const category = await this.academyCategoryService.create(req.body);
       this.UserLogService.create(
         req.decoded._id,
         req.method,
         function_Keys.academies,
-        "Admin Created a new program."
+        "Admin Created an academy category."
       );
-      ResponseService.success(res, "Success!", program, 201);
+      ResponseService.success(res, "Success!", category, 201);
     } catch (error) {
       ResponseService.error(res, error.message, 400);
     }
@@ -46,12 +46,12 @@ class ProgramController {
 
   update = asyncHandler(async (req, res) => {
     try {
-      await this.programService.update(req.body, req.file);
+      await this.academyCategoryService.update(req.body);
       this.UserLogService.create(
         req.decoded._id,
         req.method,
         function_Keys.academies,
-        "Admin Updated a program."
+        "Admin Updated an academy category."
       );
       ResponseService.success(res, "Success!", null, 200);
     } catch (error) {
@@ -61,12 +61,12 @@ class ProgramController {
 
   delete = asyncHandler(async (req, res) => {
     try {
-      await this.programService.delete(req.params.ids);
+      await this.academyCategoryService.delete(req.params.ids);
       this.UserLogService.create(
         req.decoded._id,
         req.method,
         function_Keys.academies,
-        "Admin Deleted a program."
+        "Admin Deleted an academy category."
       );
       ResponseService.success(res, "Success!", null, 200);
     } catch (error) {
@@ -75,4 +75,4 @@ class ProgramController {
   });
 }
 
-module.exports = ProgramController;
+module.exports = AcademyCategoryController;

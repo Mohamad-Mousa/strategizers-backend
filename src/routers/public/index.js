@@ -1,6 +1,7 @@
 let express = require("express");
 
 const ServiceRouter = require("./service.router");
+const SubServiceRouter = require("./sub_service.router");
 const WebsiteRouter = require("./website.router");
 const SettingRouter = require("./setting.router");
 const TestimonialRouter = require("./testimonial.router");
@@ -15,8 +16,7 @@ const ProposalRouter = require("./proposal.router");
 const JobRouter = require("./job.router");
 const BookingRouter = require("./booking.router");
 const CalendlyWebhookRouter = require("./calendly_webhook.router");
-const ProgramRouter = require("./program.router");
-const ProgramCategoryRouter = require("./program_category.router");
+const AcademyCategoryRouter = require("./academy_category.router");
 const CourseRouter = require("./course.router");
 
 class PublicRouters {
@@ -26,6 +26,7 @@ class PublicRouters {
     let router = express.Router();
 
     new ServiceRouter().configureRoutes(router);
+    new SubServiceRouter().configureRoutes(router);
     new WebsiteRouter().configureRoutes(router);
     new SettingRouter().configureRoutes(router);
     new TestimonialRouter().configureRoutes(router);
@@ -40,8 +41,7 @@ class PublicRouters {
     new JobRouter().configureRoutes(router);
     new BookingRouter().configureRoutes(router);
     new CalendlyWebhookRouter().configureRoutes(router);
-    new ProgramRouter().configureRoutes(router);
-    new ProgramCategoryRouter().configureRoutes(router);
+    new AcademyCategoryRouter().configureRoutes(router);
     new CourseRouter().configureRoutes(router);
     app.use("/public", router);
   }

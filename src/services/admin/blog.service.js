@@ -53,6 +53,14 @@ class BlogService extends BaseService {
           as: "service",
         },
       },
+      {
+        $lookup: {
+          from: "teams",
+          localField: "contacts",
+          foreignField: "_id",
+          as: "contacts",
+        },
+      },
       { $unwind: { path: "$service", preserveNullAndEmptyArrays: true } },
       ...pipes,
       {
@@ -75,7 +83,9 @@ class BlogService extends BaseService {
   async findOne(id) {
     const blog = await this.Blog.findOne({
       _id: id,
-    }).populate("service");
+    })
+      .populate("service")
+      .populate("contacts");
     if (!blog) {
       throw new CustomError("Blog not found", 404);
     }
@@ -98,6 +108,10 @@ class BlogService extends BaseService {
 
     if (!body.image) {
       throw new CustomError("Image is required", 400);
+    }
+
+    if (body.contacts !== undefined) {
+      body.contacts = this._normalizeContacts(body.contacts);
     }
 
     body.slug = StringFormatter.slugify(body.title.en);
@@ -129,6 +143,10 @@ class BlogService extends BaseService {
       }
     }
 
+    if (body.contacts !== undefined) {
+      body.contacts = this._normalizeContacts(body.contacts);
+    }
+
     const blog = await this.Blog.findByIdAndUpdate(body._id, {
       ...body,
     });
@@ -140,6 +158,21 @@ class BlogService extends BaseService {
     await this.Blog.deleteMany({
       _id: { $in: idArray },
     });
+  }
+
+  _normalizeContacts(contacts) {
+    if (contacts == null) return [];
+    if (typeof contacts === "string") {
+      try {
+        contacts = JSON.parse(contacts);
+      } catch {
+        contacts = contacts ? [contacts] : [];
+      }
+    }
+    if (!Array.isArray(contacts)) return [];
+    return contacts
+      .filter((id) => id)
+      .map((id) => this.ObjectId(id));
   }
 }
 

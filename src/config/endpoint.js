@@ -857,6 +857,142 @@ module.exports = {
           ],
         },
         {
+          folder: "Sub-Services",
+          auth: null,
+          items: [
+            {
+              name: "Find Many",
+              method: "GET",
+              url: "{{local}}/admin/sub-service",
+              params: [
+                { key: "page", value: "1", type: "query" },
+                { key: "limit", value: "10", type: "query" },
+                { key: "sortBy", value: "createdAt", type: "query" },
+                { key: "sortDirection", value: "desc", type: "query" },
+                { key: "term", value: "", type: "query" },
+                { key: "service", value: "", type: "query" },
+              ],
+            },
+            {
+              name: "Find One",
+              method: "GET",
+              url: "{{local}}/admin/sub-service/:id",
+              params: [],
+            },
+            {
+              name: "Create",
+              method: "POST",
+              url: "{{local}}/admin/sub-service",
+              bodyType: "raw",
+              body: {
+                title: {
+                  en: "Workforce Strategy & Planning",
+                  ar: "استراتيجية وتخطيط القوى العاملة",
+                },
+                outcome: {
+                  en: "Strategy-Ready Workforce Capacity",
+                  ar: "قدرة قوى عاملة جاهزة للاستراتيجية",
+                },
+                oneLineValuePromise: {
+                  en: "Build a clear, cost-aware workforce plan that protects delivery by aligning demand, supply, and critical roles.",
+                  ar: "بناء خطة قوى عاملة واضحة وواعية بالتكلفة تحمي التسليم من خلال مواءمة الطلب والعرض والأدوار الحرجة.",
+                },
+                strategicIssuesWeResolve: [
+                  {
+                    en: "Headcount decisions are reactive; capacity is always \"too late.\"",
+                    ar: "قرارات عدد الموظفين رد فعلية؛ القدرة دائماً \"متأخرة جداً\".",
+                  },
+                  {
+                    en: "Critical roles are overloaded; delivery slips and quality drops.",
+                    ar: "الأدوار الحرجة مثقلة؛ التسليم يتأخر والجودة تنخفض.",
+                  },
+                  {
+                    en: "Growth plans exist, but workforce and cost assumptions don't.",
+                    ar: "خطط النمو موجودة، لكن افتراضات القوى العاملة والتكلفة غير موجودة.",
+                  },
+                ],
+                whatYouGet: [
+                  {
+                    en: "Workforce demand/supply model + scenarios (growth / efficiency / transformation).",
+                    ar: "نموذج طلب/عرض القوى العاملة + سيناريوهات (نمو / كفاءة / تحول).",
+                  },
+                  {
+                    en: "Critical roles map + build/buy/borrow plan and hiring priorities.",
+                    ar: "خريطة الأدوار الحرجة + خطة بناء/شراء/استعارة وأولويات التوظيف.",
+                  },
+                  {
+                    en: "Workforce roadmap with cost implications and governance cadence.",
+                    ar: "خارطة طريق القوى العاملة مع تداعيات التكلفة وإيقاع الحوكمة.",
+                  },
+                ],
+                service: "<serviceId>",
+                icon: "",
+                isActive: true,
+              },
+              params: [],
+            },
+            {
+              name: "Update",
+              method: "PUT",
+              url: "{{local}}/admin/sub-service/update",
+              bodyType: "raw",
+              body: {
+                _id: "<id>",
+                title: {
+                  en: "Workforce Strategy & Planning",
+                  ar: "استراتيجية وتخطيط القوى العاملة",
+                },
+                outcome: {
+                  en: "Strategy-Ready Workforce Capacity",
+                  ar: "قدرة قوى عاملة جاهزة للاستراتيجية",
+                },
+                oneLineValuePromise: {
+                  en: "Build a clear, cost-aware workforce plan that protects delivery by aligning demand, supply, and critical roles.",
+                  ar: "بناء خطة قوى عاملة واضحة وواعية بالتكلفة تحمي التسليم من خلال مواءمة الطلب والعرض والأدوار الحرجة.",
+                },
+                strategicIssuesWeResolve: [
+                  {
+                    en: "Headcount decisions are reactive; capacity is always \"too late.\"",
+                    ar: "قرارات عدد الموظفين رد فعلية؛ القدرة دائماً \"متأخرة جداً\".",
+                  },
+                  {
+                    en: "Critical roles are overloaded; delivery slips and quality drops.",
+                    ar: "الأدوار الحرجة مثقلة؛ التسليم يتأخر والجودة تنخفض.",
+                  },
+                  {
+                    en: "Growth plans exist, but workforce and cost assumptions don't.",
+                    ar: "خطط النمو موجودة، لكن افتراضات القوى العاملة والتكلفة غير موجودة.",
+                  },
+                ],
+                whatYouGet: [
+                  {
+                    en: "Workforce demand/supply model + scenarios (growth / efficiency / transformation).",
+                    ar: "نموذج طلب/عرض القوى العاملة + سيناريوهات (نمو / كفاءة / تحول).",
+                  },
+                  {
+                    en: "Critical roles map + build/buy/borrow plan and hiring priorities.",
+                    ar: "خريطة الأدوار الحرجة + خطة بناء/شراء/استعارة وأولويات التوظيف.",
+                  },
+                  {
+                    en: "Workforce roadmap with cost implications and governance cadence.",
+                    ar: "خارطة طريق القوى العاملة مع تداعيات التكلفة وإيقاع الحوكمة.",
+                  },
+                ],
+                service: "<serviceId>",
+                icon: "",
+                isActive: true,
+              },
+              params: [],
+            },
+            {
+              name: "Delete",
+              method: "DELETE",
+              url: "{{local}}/admin/sub-service/delete/:ids",
+              params: [],
+            },
+          ],
+        },
+        {
           folder: "Settings",
           auth: null,
           items: [
@@ -1181,6 +1317,8 @@ module.exports = {
                 { key: "image", value: "image.png", type: "file" },
                 { key: "service", value: "", type: "text" },
                 { key: "author", value: "", type: "text" },
+                { key: "contacts[0]", value: "<teamId>", type: "text" },
+                { key: "contacts[1]", value: "<teamId>", type: "text" },
                 { key: "tags[0][en]", value: "", type: "text" },
                 { key: "tags[0][ar]", value: "", type: "text" },
                 { key: "isActive", value: "true", type: "text" },
@@ -1203,6 +1341,8 @@ module.exports = {
                 { key: "image", value: "image.png", type: "file" },
                 { key: "service", value: "", type: "text" },
                 { key: "author", value: "", type: "text" },
+                { key: "contacts[0]", value: "<teamId>", type: "text" },
+                { key: "contacts[1]", value: "<teamId>", type: "text" },
                 { key: "tags[0][en]", value: "", type: "text" },
                 { key: "tags[0][ar]", value: "", type: "text" },
                 { key: "isActive", value: "true", type: "text" },
@@ -1711,7 +1851,6 @@ module.exports = {
                 { key: "sortBy", value: "createdAt", type: "query" },
                 { key: "sortDirection", value: "desc", type: "query" },
                 { key: "job", value: "", type: "query" },
-                { key: "gender", value: "", type: "query" },
               ],
             },
             {
@@ -1773,6 +1912,7 @@ module.exports = {
                 status: "<status>",
                 isRead: "<boolean>",
                 meetingNotes: "<string>",
+                discussionPoints: "<string>",
               },
               params: [],
             },
@@ -1785,13 +1925,13 @@ module.exports = {
           ],
         },
         {
-          folder: "Programs",
+          folder: "Academy Categories",
           auth: null,
           items: [
             {
               name: "Find Many",
               method: "GET",
-              url: "{{local}}/admin/program",
+              url: "{{local}}/admin/academy-category",
               params: [
                 { key: "page", value: "1", type: "query" },
                 { key: "limit", value: "10", type: "query" },
@@ -1803,95 +1943,26 @@ module.exports = {
             {
               name: "Find One",
               method: "GET",
-              url: "{{local}}/admin/program/:id",
+              url: "{{local}}/admin/academy-category/:id",
               params: [],
             },
             {
               name: "Create",
               method: "POST",
-              url: "{{local}}/admin/program",
-              bodyType: "form-data",
-              fields: [
-                { key: "title[en]", value: "Program Title", type: "text" },
-                { key: "title[ar]", value: "Program Title", type: "text" },
-                { key: "image", value: "path/to/image.jpg", type: "file" },
-              ],
-              params: [],
-            },
-            {
-              name: "Update",
-              method: "PUT",
-              url: "{{local}}/admin/program/update",
-              bodyType: "form-data",
-              fields: [
-                { key: "_id", value: "<id>", type: "text" },
-                {
-                  key: "title[en]",
-                  value: "Updated Program Title",
-                  type: "text",
-                },
-                {
-                  key: "title[ar]",
-                  value: "Updated Program Title",
-                  type: "text",
-                },
-                {
-                  key: "image",
-                  value: "path/to/updated-image.jpg",
-                  type: "file",
-                },
-              ],
-              params: [],
-            },
-            {
-              name: "Delete",
-              method: "DELETE",
-              url: "{{local}}/admin/program/delete/:ids",
-              params: [],
-            },
-          ],
-        },
-        {
-          folder: "Program Categories",
-          auth: null,
-          items: [
-            {
-              name: "Find Many",
-              method: "GET",
-              url: "{{local}}/admin/program-category",
-              params: [
-                { key: "page", value: "1", type: "query" },
-                { key: "limit", value: "10", type: "query" },
-                { key: "sortBy", value: "createdAt", type: "query" },
-                { key: "sortDirection", value: "desc", type: "query" },
-                { key: "term", value: "", type: "query" },
-                { key: "program", value: "", type: "query" },
-              ],
-            },
-            {
-              name: "Find One",
-              method: "GET",
-              url: "{{local}}/admin/program-category/:id",
-              params: [],
-            },
-            {
-              name: "Create",
-              method: "POST",
-              url: "{{local}}/admin/program-category",
+              url: "{{local}}/admin/academy-category",
               bodyType: "raw",
               body: {
                 title: {
                   en: "<string>",
                   ar: "<string>",
                 },
-                program: "<string>",
               },
               params: [],
             },
             {
               name: "Update",
               method: "PUT",
-              url: "{{local}}/admin/program-category/update",
+              url: "{{local}}/admin/academy-category/update",
               bodyType: "raw",
               body: {
                 _id: "<id>",
@@ -1899,14 +1970,13 @@ module.exports = {
                   en: "<string>",
                   ar: "<string>",
                 },
-                program: "<string>",
               },
               params: [],
             },
             {
               name: "Delete",
               method: "DELETE",
-              url: "{{local}}/admin/program-category/delete/:ids",
+              url: "{{local}}/admin/academy-category/delete/:ids",
               params: [],
             },
           ],
@@ -1925,7 +1995,7 @@ module.exports = {
                 { key: "sortBy", value: "createdAt", type: "query" },
                 { key: "sortDirection", value: "desc", type: "query" },
                 { key: "term", value: "", type: "query" },
-                { key: "programCategory", value: "", type: "query" },
+                { key: "academyCategory", value: "", type: "query" },
               ],
             },
             {
@@ -1943,29 +2013,119 @@ module.exports = {
                 { key: "title[en]", value: "Course Title", type: "text" },
                 { key: "title[ar]", value: "Course Title", type: "text" },
                 {
-                  key: "shortDescription[en]",
-                  value: "Course Short Description",
+                  key: "programOverview[en]",
+                  value: "Program overview text",
                   type: "text",
                 },
                 {
-                  key: "shortDescription[ar]",
-                  value: "Course Short Description",
+                  key: "programOverview[ar]",
+                  value: "Program overview text",
                   type: "text",
                 },
                 {
-                  key: "longDescription[en]",
-                  value: "Course Long Description",
+                  key: "programObjectives[0][en]",
+                  value: "Objective 1",
                   type: "text",
                 },
                 {
-                  key: "longDescription[ar]",
-                  value: "Course Long Description",
+                  key: "programObjectives[0][ar]",
+                  value: "الهدف 1",
+                  type: "text",
+                },
+                {
+                  key: "targetAudience[0][en]",
+                  value: "Audience 1",
+                  type: "text",
+                },
+                {
+                  key: "targetAudience[0][ar]",
+                  value: "الجمهور 1",
+                  type: "text",
+                },
+                {
+                  key: "expectedOrganizationalBenefits[0][en]",
+                  value: "Benefit 1",
+                  type: "text",
+                },
+                {
+                  key: "expectedOrganizationalBenefits[0][ar]",
+                  value: "الفائدة 1",
+                  type: "text",
+                },
+                {
+                  key: "programDuration[en]",
+                  value: "2 to 3 days",
+                  type: "text",
+                },
+                {
+                  key: "programDuration[ar]",
+                  value: "2 to 3 days",
+                  type: "text",
+                },
+                {
+                  key: "programDurationDetails[en]",
+                  value: "Optional details",
+                  type: "text",
+                },
+                {
+                  key: "programDurationDetails[ar]",
+                  value: "Optional details",
+                  type: "text",
+                },
+                {
+                  key: "deliveryFormat[0][en]",
+                  value: "In-person",
+                  type: "text",
+                },
+                {
+                  key: "deliveryFormat[0][ar]",
+                  value: "حضوري",
+                  type: "text",
+                },
+                {
+                  key: "programMethodology[0][en]",
+                  value: "Facilitated learning",
+                  type: "text",
+                },
+                {
+                  key: "programMethodology[0][ar]",
+                  value: "تعلم ميسر",
+                  type: "text",
+                },
+                {
+                  key: "programOutline[0][title][en]",
+                  value: "Module 1",
+                  type: "text",
+                },
+                {
+                  key: "programOutline[0][title][ar]",
+                  value: "الوحدة 1",
+                  type: "text",
+                },
+                {
+                  key: "programOutline[0][items][0][en]",
+                  value: "Item 1",
+                  type: "text",
+                },
+                {
+                  key: "programOutline[0][items][0][ar]",
+                  value: "البند 1",
+                  type: "text",
+                },
+                {
+                  key: "samplePracticalActivities[0][en]",
+                  value: "Activity 1",
+                  type: "text",
+                },
+                {
+                  key: "samplePracticalActivities[0][ar]",
+                  value: "النشاط 1",
                   type: "text",
                 },
                 { key: "image", value: "path/to/image.jpg", type: "file" },
                 {
-                  key: "programCategory",
-                  value: "programCategory",
+                  key: "academyCategory",
+                  value: "academyCategory",
                   type: "text",
                 },
               ],
@@ -1989,23 +2149,113 @@ module.exports = {
                   type: "text",
                 },
                 {
-                  key: "shortDescription[en]",
-                  value: "Updated Course Short Description",
+                  key: "programOverview[en]",
+                  value: "Updated program overview",
                   type: "text",
                 },
                 {
-                  key: "shortDescription[ar]",
-                  value: "Updated Course Short Description",
+                  key: "programOverview[ar]",
+                  value: "Updated program overview",
                   type: "text",
                 },
                 {
-                  key: "longDescription[en]",
-                  value: "Updated Course Long Description",
+                  key: "programObjectives[0][en]",
+                  value: "Objective 1",
                   type: "text",
                 },
                 {
-                  key: "longDescription[ar]",
-                  value: "Updated Course Long Description",
+                  key: "programObjectives[0][ar]",
+                  value: "الهدف 1",
+                  type: "text",
+                },
+                {
+                  key: "targetAudience[0][en]",
+                  value: "Audience 1",
+                  type: "text",
+                },
+                {
+                  key: "targetAudience[0][ar]",
+                  value: "الجمهور 1",
+                  type: "text",
+                },
+                {
+                  key: "expectedOrganizationalBenefits[0][en]",
+                  value: "Benefit 1",
+                  type: "text",
+                },
+                {
+                  key: "expectedOrganizationalBenefits[0][ar]",
+                  value: "الفائدة 1",
+                  type: "text",
+                },
+                {
+                  key: "programDuration[en]",
+                  value: "2 to 3 days",
+                  type: "text",
+                },
+                {
+                  key: "programDuration[ar]",
+                  value: "2 to 3 days",
+                  type: "text",
+                },
+                {
+                  key: "programDurationDetails[en]",
+                  value: "Optional details",
+                  type: "text",
+                },
+                {
+                  key: "programDurationDetails[ar]",
+                  value: "Optional details",
+                  type: "text",
+                },
+                {
+                  key: "deliveryFormat[0][en]",
+                  value: "In-person",
+                  type: "text",
+                },
+                {
+                  key: "deliveryFormat[0][ar]",
+                  value: "حضوري",
+                  type: "text",
+                },
+                {
+                  key: "programMethodology[0][en]",
+                  value: "Facilitated learning",
+                  type: "text",
+                },
+                {
+                  key: "programMethodology[0][ar]",
+                  value: "تعلم ميسر",
+                  type: "text",
+                },
+                {
+                  key: "programOutline[0][title][en]",
+                  value: "Module 1",
+                  type: "text",
+                },
+                {
+                  key: "programOutline[0][title][ar]",
+                  value: "الوحدة 1",
+                  type: "text",
+                },
+                {
+                  key: "programOutline[0][items][0][en]",
+                  value: "Item 1",
+                  type: "text",
+                },
+                {
+                  key: "programOutline[0][items][0][ar]",
+                  value: "البند 1",
+                  type: "text",
+                },
+                {
+                  key: "samplePracticalActivities[0][en]",
+                  value: "Activity 1",
+                  type: "text",
+                },
+                {
+                  key: "samplePracticalActivities[0][ar]",
+                  value: "النشاط 1",
                   type: "text",
                 },
                 {
@@ -2014,8 +2264,8 @@ module.exports = {
                   type: "file",
                 },
                 {
-                  key: "programCategory",
-                  value: "programCategory",
+                  key: "academyCategory",
+                  value: "academyCategory",
                   type: "text",
                 },
               ],
@@ -2242,6 +2492,31 @@ module.exports = {
               name: "Find One",
               method: "GET",
               url: "{{local}}/public/service/:slug",
+              params: [],
+            },
+          ],
+        },
+        {
+          folder: "Sub-Services",
+          auth: null,
+          items: [
+            {
+              name: "Find Many",
+              method: "GET",
+              url: "{{local}}/public/sub-service",
+              params: [
+                { key: "page", value: "1", type: "query" },
+                { key: "limit", value: "10", type: "query" },
+                { key: "sortBy", value: "createdAt", type: "query" },
+                { key: "sortDirection", value: "asc", type: "query" },
+                { key: "term", value: "", type: "query" },
+                { key: "service", value: "", type: "query" },
+              ],
+            },
+            {
+              name: "Find One",
+              method: "GET",
+              url: "{{local}}/public/sub-service/:slug",
               params: [],
             },
           ],
@@ -2512,8 +2787,6 @@ module.exports = {
                 { key: "email", value: "john.doe@example.com", type: "text" },
                 { key: "phone[code]", value: "961", type: "text" },
                 { key: "phone[number]", value: "71015691", type: "text" },
-                { key: "gender", value: "male", type: "text" },
-                { key: "dob", value: "1990-01-01", type: "text" },
                 {
                   key: "message",
                   value: "I would like to apply for this job",
@@ -2550,44 +2823,20 @@ module.exports = {
                   code: "<string>",
                   number: "<string>",
                 },
+                discussionPoints: "<string>",
               },
               params: [],
             },
           ],
         },
         {
-          folder: "Programs",
+          folder: "Academy Categories",
           auth: null,
           items: [
             {
               name: "Find Many",
               method: "GET",
-              url: "{{local}}/public/program",
-              params: [
-                { key: "page", value: "1", type: "query" },
-                { key: "limit", value: "10", type: "query" },
-                { key: "sortBy", value: "createdAt", type: "query" },
-                { key: "sortDirection", value: "desc", type: "query" },
-                { key: "term", value: "", type: "query" },
-                { key: "program", value: "", type: "query" },
-              ],
-            },
-            {
-              name: "Find One",
-              method: "GET",
-              url: "{{local}}/public/program/:id",
-              params: [],
-            },
-          ],
-        },
-        {
-          folder: "Program Categories",
-          auth: null,
-          items: [
-            {
-              name: "Find Many",
-              method: "GET",
-              url: "{{local}}/public/program-category",
+              url: "{{local}}/public/academy-category",
               params: [
                 { key: "page", value: "1", type: "query" },
                 { key: "limit", value: "10", type: "query" },
@@ -2599,7 +2848,7 @@ module.exports = {
             {
               name: "Find One",
               method: "GET",
-              url: "{{local}}/public/program-category/:id",
+              url: "{{local}}/public/academy-category/:id",
               params: [],
             },
           ],
@@ -2618,7 +2867,7 @@ module.exports = {
                 { key: "sortBy", value: "createdAt", type: "query" },
                 { key: "sortDirection", value: "desc", type: "query" },
                 { key: "term", value: "", type: "query" },
-                { key: "programCategory", value: "", type: "query" },
+                { key: "academyCategory", value: "", type: "query" },
               ],
             },
             {

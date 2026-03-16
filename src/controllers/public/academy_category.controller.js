@@ -1,11 +1,11 @@
 const asyncHandler = require("express-async-handler");
 
 const ResponseService = require("../../services/core/response.service");
-const ProgramCategoryService = require("../../services/public/program_category.service");
+const AcademyCategoryService = require("../../services/public/academy_category.service");
 
-class ProgramCategoryController {
+class AcademyCategoryController {
   constructor() {
-    this.service = new ProgramCategoryService();
+    this.service = new AcademyCategoryService();
   }
 
   findMany = asyncHandler(async (req, res) => {
@@ -27,4 +27,4 @@ class ProgramCategoryController {
   });
 }
 
-module.exports = ProgramCategoryController;
+module.exports = AcademyCategoryController;

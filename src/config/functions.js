@@ -5,6 +5,7 @@ module.exports = {
   settings: "settings",
   website: "website",
   services: "services",
+  subServices: "subServices",
   testimonials: "testimonials",
   faqs: "faqs",
   partners: "partners",

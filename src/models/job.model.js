@@ -37,6 +37,10 @@ const Job = mongoose.model(
           required: true,
         },
       ],
+      location: {
+        type: String,
+        required: true,
+      },
       isActive: {
         type: Boolean,
         default: true,
@@ -46,8 +50,8 @@ const Job = mongoose.model(
         default: false,
       },
     },
-    { timestamps: true }
-  )
+    { timestamps: true },
+  ),
 );
 
 module.exports = Job;

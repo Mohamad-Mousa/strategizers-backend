@@ -21,6 +21,7 @@ class BookingService extends BaseService {
       "email",
       "businessPhone.code",
       "businessPhone.number",
+      "discussionPoints",
     ]);
 
     const booking = await this.Booking.create(body);

@@ -1,11 +1,11 @@
 let express = require("express");
-const ProgramCategoryController = require("../../controllers/admin/program_category.controller");
+const AcademyCategoryController = require("../../controllers/admin/academy_category.controller");
 const PrivilegesMiddleware = require("../../middlewares/privileges.middleware");
 const function_Keys = require("../../config/functions");
 
-class ProgramCategoryRouter {
+class AcademyCategoryRouter {
   constructor() {
-    this.controller = new ProgramCategoryController();
+    this.controller = new AcademyCategoryController();
   }
 
   configureRoutes(app) {
@@ -19,8 +19,8 @@ class ProgramCategoryRouter {
     router.put("/update", this.controller.update);
     router.delete("/delete/:ids", this.controller.delete);
 
-    app.use("/program-category", router);
+    app.use("/academy-category", router);
   }
 }
 
-module.exports = ProgramCategoryRouter;
+module.exports = AcademyCategoryRouter;

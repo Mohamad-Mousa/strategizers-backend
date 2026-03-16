@@ -1,14 +1,10 @@
-const { mongoose, Content, ObjectId } = require("./model-template");
+const { mongoose, Content } = require("./model-template");
 
-const Program = mongoose.model(
-  "Program",
+const AcademyCategory = mongoose.model(
+  "AcademyCategory",
   new mongoose.Schema(
     {
       title: Content,
-      image: {
-        type: String,
-        required: true,
-      },
       isActive: {
         type: Boolean,
         default: true,
@@ -22,4 +18,4 @@ const Program = mongoose.model(
   )
 );
 
-module.exports = Program;
+module.exports = AcademyCategory;

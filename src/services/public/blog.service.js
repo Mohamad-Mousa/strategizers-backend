@@ -52,6 +52,14 @@ class BlogService extends BaseService {
           as: "service",
         },
       },
+      {
+        $lookup: {
+          from: "teams",
+          localField: "contacts",
+          foreignField: "_id",
+          as: "contacts",
+        },
+      },
       { $unwind: { path: "$service", preserveNullAndEmptyArrays: true } },
       ...pipes,
       {
@@ -64,6 +72,7 @@ class BlogService extends BaseService {
           author: 1,
           tags: 1,
           service: 1,
+          contacts: 1,
           createdAt: 1,
           slug: 1,
         },
@@ -89,7 +98,9 @@ class BlogService extends BaseService {
     const blog = await this.Blog.findOne({
       slug,
       isActive: true,
-    }).populate("service");
+    })
+      .populate("service")
+      .populate("contacts");
     if (!blog) {
       throw new CustomError("Blog not found", 404);
     }

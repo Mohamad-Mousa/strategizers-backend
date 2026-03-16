@@ -89,6 +89,9 @@ class BookingService extends BaseService {
     if (body.meetingNotes !== undefined) {
       updateData.meetingNotes = body.meetingNotes;
     }
+    if (body.discussionPoints !== undefined) {
+      updateData.discussionPoints = body.discussionPoints;
+    }
     if (body.scheduledAt !== undefined) {
       updateData.scheduledAt = body.scheduledAt;
     }

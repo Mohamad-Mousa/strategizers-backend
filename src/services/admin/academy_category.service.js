@@ -1,13 +1,11 @@
 const BaseService = require("../core/base.service");
 const StringFormatter = require("../core/string_formatter");
-const handleUploadService = require("../core/handle_uploads.service");
 const CustomError = require("../core/custom_error.service");
 
-class ProgramService extends BaseService {
+class AcademyCategoryService extends BaseService {
   constructor() {
     super();
-    this.Program = this.models.Program;
-    this.handleUploadService = handleUploadService;
+    this.AcademyCategory = this.models.AcademyCategory;
   }
 
   async findMany(req_query, limit = 10) {
@@ -15,6 +13,7 @@ class ProgramService extends BaseService {
     let regexSearch = req_query.term
       ? StringFormatter.escapeBackslashAndPlus(req_query.term)
       : "";
+
     let query = {
       isDeleted: false,
       ...(req_query.term && {
@@ -22,9 +21,6 @@ class ProgramService extends BaseService {
           { "title.en": { $regex: new RegExp(regexSearch, "i") } },
           { "title.ar": { $regex: new RegExp(regexSearch, "i") } },
         ],
-      }),
-      ...(req_query.isActive !== undefined && {
-        isActive: req_query.isActive === "true",
       }),
     };
 
@@ -38,19 +34,18 @@ class ProgramService extends BaseService {
       pipes.push({ $sort: { createdAt: -1 } });
     }
 
-    let result = await this.Program.aggregate([
+    let result = await this.AcademyCategory.aggregate([
       { $match: query },
+      ...pipes,
       {
         $project: {
           title: 1,
-          image: 1,
           isActive: 1,
           isDeleted: 1,
           createdAt: 1,
           updatedAt: 1,
         },
       },
-      ...pipes,
       {
         $facet: {
           data: [
@@ -70,58 +65,51 @@ class ProgramService extends BaseService {
   }
 
   async findOne(id) {
-    const program = await this.Program.findOne({
+    const category = await this.AcademyCategory.findOne({
       _id: this.ObjectId(id),
       isDeleted: false,
     });
-    if (!program) {
-      throw new CustomError("Program not found", 404);
+    if (!category) {
+      throw new CustomError("Category not found", 404);
     }
-    return { program };
+    return { category };
   }
 
-  async create(body, file) {
-    if (file) {
-      body.image = file.filename;
-    }
-
-    if (!body.image) {
-      throw new CustomError("Image is required", 400);
-    }
-
+  async create(body) {
     if (!body.title || (!body.title.en && !body.title.ar)) {
       throw new CustomError("Title is required in at least one language", 400);
     }
 
-    const program = await this.Program.create(body);
-    return { program };
+    const category = await this.AcademyCategory.create(body);
+    return { category };
   }
 
-  async update(body, file) {
-    if (file) {
-      body.image = file.filename;
-    }
-
+  async update(body) {
     if (!body._id) {
-      throw new CustomError("Program ID is required", 400);
+      throw new CustomError("Category ID is required", 400);
     }
 
-    const existingProgram = await this.Program.findOne({
+    const existing = await this.AcademyCategory.findOne({
       _id: this.ObjectId(body._id),
       isDeleted: false,
     });
-
-    if (!existingProgram) {
-      throw new CustomError("Program not found", 404);
+    if (!existing) {
+      throw new CustomError("Category not found", 404);
     }
 
-    await this.Program.updateOne({ _id: this.ObjectId(body._id) }, body);
+    await this.AcademyCategory.updateOne(
+      { _id: this.ObjectId(body._id) },
+      body
+    );
   }
 
   async delete(ids) {
     ids = ids.split(",");
-    await this.Program.updateMany({ _id: { $in: ids } }, { isDeleted: true });
+    await this.AcademyCategory.updateMany(
+      { _id: { $in: ids } },
+      { isDeleted: true }
+    );
   }
 }
 
-module.exports = ProgramService;
+module.exports = AcademyCategoryService;

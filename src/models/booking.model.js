@@ -33,6 +33,10 @@ const Booking = mongoose.model(
         required: true,
       },
       businessPhone: Phone,
+      discussionPoints: {
+        type: String,
+        required: true,
+      },
       calendlyLink: {
         type: String,
         // required: true,

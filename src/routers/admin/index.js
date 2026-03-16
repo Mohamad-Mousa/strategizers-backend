@@ -7,6 +7,7 @@ const AuthRouters = require("./auth.router");
 const FunctionRouter = require("./function.router");
 const WebsiteRouter = require("./website.router");
 const ServiceRouter = require("./service.router");
+const SubServiceRouter = require("./sub_service.router");
 const SettingRouter = require("./setting.router");
 const TestimonialRouter = require("./testimonial.router");
 const FAQRouter = require("./faq.router");
@@ -20,8 +21,7 @@ const ProposalRouter = require("./proposal.router");
 const JobRouter = require("./job.router");
 const JobApplicationRouter = require("./job_application.router");
 const BookingRouter = require("./booking.router");
-const ProgramRouter = require("./program.router");
-const ProgramCategoryRouter = require("./program_category.router");
+const AcademyCategoryRouter = require("./academy_category.router");
 const CourseRouter = require("./course.router");
 const SeoRouter = require("./seo.router");
 
@@ -42,6 +42,7 @@ class AdminRouters {
     new FunctionRouter().configureRoutes(router);
     new WebsiteRouter().configureRoutes(router);
     new ServiceRouter().configureRoutes(router);
+    new SubServiceRouter().configureRoutes(router);
     new SettingRouter().configureRoutes(router);
     new TestimonialRouter().configureRoutes(router);
     new FAQRouter().configureRoutes(router);
@@ -55,8 +56,7 @@ class AdminRouters {
     new JobRouter().configureRoutes(router);
     new JobApplicationRouter().configureRoutes(router);
     new BookingRouter().configureRoutes(router);
-    new ProgramRouter().configureRoutes(router);
-    new ProgramCategoryRouter().configureRoutes(router);
+    new AcademyCategoryRouter().configureRoutes(router);
     new CourseRouter().configureRoutes(router);
     new SeoRouter().configureRoutes(router);
 

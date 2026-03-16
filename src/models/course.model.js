@@ -5,8 +5,21 @@ const Course = mongoose.model(
   new mongoose.Schema(
     {
       title: Content,
-      shortDescription: Content,
-      longDescription: Content,
+      programOverview: Content,
+      programObjectives: [Content],
+      targetAudience: [Content],
+      expectedOrganizationalBenefits: [Content],
+      programDuration: Content,
+      programDurationDetails: Content,
+      deliveryFormat: [Content],
+      programMethodology: [Content],
+      programOutline: [
+        {
+          title: Content,
+          items: [Content],
+        },
+      ],
+      samplePracticalActivities: [Content],
       image: {
         type: String,
         required: true,
@@ -16,9 +29,9 @@ const Course = mongoose.model(
         required: true,
         unique: true,
       },
-      programCategory: {
+      academyCategory: {
         type: ObjectId,
-        ref: "ProgramCategory",
+        ref: "AcademyCategory",
         required: true,
       },
       isActive: {

@@ -45,6 +45,22 @@ class ServiceService extends BaseService {
           data: [
             { $skip: req_query.page ? (req_query.page - 1) * limit : 0 },
             { $limit: limit },
+            {
+              $lookup: {
+                from: "subservices",
+                let: { serviceId: "$_id" },
+                pipeline: [
+                  {
+                    $match: {
+                      $expr: { $eq: ["$service", "$$serviceId"] },
+                      isDeleted: false,
+                    },
+                  },
+                  { $project: { title: 1, outcome: 1, icon: 1, slug: 1 } },
+                ],
+                as: "subServices",
+              },
+            },
           ],
           totalCount: [{ $count: "total" }],
         },
@@ -58,7 +74,26 @@ class ServiceService extends BaseService {
   }
 
   async findOne(id) {
-    const service = await this.Service.findOne({ _id: id, isDeleted: false });
+    const result = await this.Service.aggregate([
+      { $match: { _id: this.ObjectId(id), isDeleted: false } },
+      {
+        $lookup: {
+          from: "subservices",
+          let: { serviceId: "$_id" },
+          pipeline: [
+            {
+              $match: {
+                $expr: { $eq: ["$service", "$$serviceId"] },
+                isDeleted: false,
+              },
+            },
+            { $project: { title: 1, outcome: 1, icon: 1, slug: 1 } },
+          ],
+          as: "subServices",
+        },
+      },
+    ]);
+    const service = result[0];
     if (!service) {
       throw new CustomError("Service not found", 404);
     }
@@ -127,7 +162,7 @@ class ServiceService extends BaseService {
       {
         new: true,
         runValidators: true,
-      }
+      },
     );
 
     if (!service) {

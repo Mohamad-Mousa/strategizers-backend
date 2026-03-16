@@ -21,12 +21,12 @@ class CourseService extends BaseService {
         $or: [
           { "title.en": { $regex: new RegExp(regexSearch, "i") } },
           { "title.ar": { $regex: new RegExp(regexSearch, "i") } },
-          { "shortDescription.en": { $regex: new RegExp(regexSearch, "i") } },
-          { "shortDescription.ar": { $regex: new RegExp(regexSearch, "i") } },
+          { "programOverview.en": { $regex: new RegExp(regexSearch, "i") } },
+          { "programOverview.ar": { $regex: new RegExp(regexSearch, "i") } },
         ],
       }),
-      ...(req_query.programCategory && {
-        programCategory: this.ObjectId(req_query.programCategory),
+      ...(req_query.academyCategory && {
+        academyCategory: this.ObjectId(req_query.academyCategory),
       }),
     };
 
@@ -43,13 +43,25 @@ class CourseService extends BaseService {
     let result = await this.Course.aggregate([
       { $match: query },
       {
+        $lookup: {
+          from: "academycategories",
+          localField: "academyCategory",
+          foreignField: "_id",
+          as: "academyCategory",
+        },
+      },
+      {
+        $unwind: { path: "$academyCategory", preserveNullAndEmptyArrays: true },
+      },
+      {
         $project: {
           _id: 1,
           title: 1,
-          shortDescription: 1,
+          programOverview: 1,
+          programDuration: 1,
           image: 1,
           slug: 1,
-          programCategory: 1,
+          academyCategory: 1,
           createdAt: 1,
         },
       },
@@ -77,7 +89,7 @@ class CourseService extends BaseService {
       slug,
       isDeleted: false,
       isActive: true,
-    }).populate("programCategory");
+    }).populate("academyCategory");
     if (!course) {
       throw new CustomError("Course not found", 404);
     }

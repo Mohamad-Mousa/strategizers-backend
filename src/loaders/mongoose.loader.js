@@ -33,6 +33,7 @@ class MongooseLoader {
     this.models.RefreshToken = require("../models/refresh_token.model");
     this.models.Website = require("../models/website.model");
     this.models.Service = require("../models/service.model");
+    this.models.SubService = require("../models/sub_service.model");
     this.models.Setting = require("../models/setting.model");
     this.models.Testimonial = require("../models/testimonial.model");
     this.models.FAQ = require("../models/faq.model");
@@ -46,8 +47,7 @@ class MongooseLoader {
     this.models.Job = require("../models/job.model");
     this.models.JobApplication = require("../models/job_application.model");
     this.models.Booking = require("../models/booking.model");
-    this.models.Program = require("../models/program.model");
-    this.models.ProgramCategory = require("../models/program_category.model");
+    this.models.AcademyCategory = require("../models/academy_category.model");
     this.models.Course = require("../models/course.model");
     this.models.Seo = require("../models/seo.model");
   }

@@ -26,6 +26,7 @@ class JobService extends BaseService {
         ],
       }),
       ...(req_query.type && { type: req_query.type }),
+      ...(req_query.location && { location: { $regex: new RegExp(StringFormatter.escapeBackslashAndPlus(req_query.location), "i") } }),
     };
     let pipes = [];
     if (req_query.sortBy) {
@@ -46,6 +47,7 @@ class JobService extends BaseService {
           type: 1,
           responsibilities: 1,
           requirements: 1,
+          location: 1,
           isActive: 1,
           createdAt: 1,
         },
@@ -85,6 +87,7 @@ class JobService extends BaseService {
       "type",
       "responsibilities",
       "requirements",
+      "location",
     ]);
 
     if (file) {

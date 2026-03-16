@@ -24,6 +24,13 @@ const Blog = mongoose.model(
         type: String,
         required: true,
       },
+      contacts: [
+        {
+          type: ObjectId,
+          ref: "Team",
+          required: true,
+        },
+      ],
       tags: [
         {
           en: {
@@ -41,8 +48,8 @@ const Blog = mongoose.model(
         default: true,
       },
     },
-    { timestamps: true }
-  )
+    { timestamps: true },
+  ),
 );
 
 module.exports = Blog;

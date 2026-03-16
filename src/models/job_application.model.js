@@ -1,4 +1,4 @@
-const { mongoose, Phone, ObjectId, enums } = require("./model-template");
+const { mongoose, Phone, ObjectId } = require("./model-template");
 
 const JobApplication = mongoose.model(
   "JobApplication",
@@ -20,11 +20,6 @@ const JobApplication = mongoose.model(
         trim: true,
       },
       phone: Phone,
-      gender: {
-        type: String,
-        enum: enums.Genders,
-      },
-      dob: Date,
       message: {
         type: String,
         trim: true,
