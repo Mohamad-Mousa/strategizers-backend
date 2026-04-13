@@ -14,6 +14,9 @@ let config = {
     "http://localhost:3002",
     "https://next-strat.othmanconstruction.com",
     "https://admin-strat.othmanconstruction.com",
+    "https://*.vercel.app",
+    "https://*.v0.dev",
+    "https://*.vusercontent.net",
   ],
 };
 
