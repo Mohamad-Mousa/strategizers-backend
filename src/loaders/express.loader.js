@@ -14,25 +14,33 @@ class ExpressLoader {
   constructor() {
     const app = express();
 
+    // app.use(
+    //   cors({
+    //     origin: function (origin, callback) {
+    //       if (!origin || config.allowedOrigins.indexOf(origin) !== -1) {
+    //         callback(null, origin);
+    //       } else {
+    //         callback(new Error("Not allowed by CORS"));
+    //       }
+    //     },
+    //     allowHeaders: [
+    //       "Access-Control-Allow-Headers",
+    //       "X-Requested-With",
+    //       "content-type",
+    //       "x-access-token",
+    //       "authorization",
+    //     ],
+    //     methods: ["GET", "POST", "PUT", "DELETE"],
+    //     credentials: true,
+    //   })
+    // );
+
     app.use(
       cors({
-        origin: function (origin, callback) {
-          if (!origin || config.allowedOrigins.indexOf(origin) !== -1) {
-            callback(null, origin);
-          } else {
-            callback(new Error("Not allowed by CORS"));
-          }
-        },
-        allowHeaders: [
-          "Access-Control-Allow-Headers",
-          "X-Requested-With",
-          "content-type",
-          "x-access-token",
-          "authorization",
-        ],
-        methods: ["GET", "POST", "PUT", "DELETE"],
+        origin: true,
         credentials: true,
-      })
+        methods: ["GET", "HEAD", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+      }),
     );
 
     const limiter = rateLimit({
@@ -56,7 +64,7 @@ class ExpressLoader {
       express.urlencoded({
         extended: false,
         limit: "20mb",
-      })
+      }),
     );
     app.use(express.json({ limit: "20mb" }));
 
