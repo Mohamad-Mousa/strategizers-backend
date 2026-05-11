@@ -58,7 +58,7 @@ const Setting = mongoose.model(
         privacyPolicy: Content,
         termsAndConditions: Content,
       },
-      isMaintanence: {
+      isMaintenance: {
         type: Boolean,
         default: false,
       },
@@ -67,8 +67,8 @@ const Setting = mongoose.model(
         default: false,
       },
     },
-    { timestamps: true }
-  )
+    { timestamps: true },
+  ),
 );
 
 module.exports = Setting;
