@@ -58,6 +58,14 @@ const Setting = mongoose.model(
         privacyPolicy: Content,
         termsAndConditions: Content,
       },
+      isMaintanence: {
+        type: Boolean,
+        default: false,
+      },
+      isUnderConstruction: {
+        type: Boolean,
+        default: false,
+      },
     },
     { timestamps: true }
   )
